@@ -126,13 +126,7 @@ This function sets potential evaporation
 to a given value for all surfaces (except lakes and rivers)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>abimo_xml_evap</span><span class='op'>(</span>
-  file_in <span class='op'>=</span> <span class='st'>"data/config.xml"</span>,
-  <span class='va'>file_out</span>,
-  line_evap <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>42</span><span class='op'>:</span><span class='fl'>46</span>, <span class='fl'>49</span><span class='op'>)</span>,
-  <span class='va'>evap_annual</span>,
-  <span class='va'>evap_summer</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>abimo_xml_evap</span><span class='op'>(</span>file_in <span class='op'>=</span> <span class='st'>"data/config.xml"</span>, <span class='va'>file_out</span>, <span class='va'>evap_annual</span>, <span class='va'>evap_summer</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,10 +138,6 @@ to a given value for all surfaces (except lakes and rivers)</p>
     <tr>
       <th>file_out</th>
       <td><p>path and file name to write changed abimo xml-input file</p></td>
-    </tr>
-    <tr>
-      <th>line_evap</th>
-      <td><p>line number(s) with information on potential evaporation</p></td>
     </tr>
     <tr>
       <th>evap_annual</th>
