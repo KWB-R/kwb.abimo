@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>change "BERtoZero"-settings in Abimo config.xml to true — abimo_xml_BER • kwb.abimo</title>
+<title>Default ABIMO config.xml path — default_config • kwb.abimo</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,8 @@
 
 
 
-<meta property="og:title" content="change "BERtoZero"-settings in Abimo config.xml to true — abimo_xml_BER" />
-<meta property="og:description" content="as default irrigation of pervious areas
-is assumed based on &quot;Nutzung&quot; and &quot;Typ&quot;.
-This function turns of irrigation for all areas
-(BERtoZero = true)" />
+<meta property="og:title" content="Default ABIMO config.xml path — default_config" />
+<meta property="og:description" content="Default ABIMO config.xml path" />
 
 
 
@@ -114,41 +111,22 @@ This function turns of irrigation for all areas
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>change "BERtoZero"-settings in Abimo config.xml to true</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.abimo/blob/master/R/abimo_functions_am.R'><code>R/abimo_functions_am.R</code></a></small>
-    <div class="hidden name"><code>abimo_xml_BER.Rd</code></div>
+    <h1>Default ABIMO config.xml path</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.abimo/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>default_config.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>as default irrigation of pervious areas
-is assumed based on "Nutzung" and "Typ".
-This function turns of irrigation for all areas
-(BERtoZero = true)</p>
+    <p>Default ABIMO config.xml path</p>
     </div>
 
-    <pre class="usage"><span class='fu'>abimo_xml_BER</span><span class='op'>(</span>file_in <span class='op'>=</span> <span class='fu'><a href='default_config.html'>default_config</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>file_out</span>, line_BER <span class='op'>=</span> <span class='fl'>56</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>default_config</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>file_in</th>
-      <td><p>path and file name of abimo xml-input file, default is "<code>default_config</code></p></td>
-    </tr>
-    <tr>
-      <th>file_out</th>
-      <td><p>path and file name to write changed abimo xml-input file</p></td>
-    </tr>
-    <tr>
-      <th>line_BER</th>
-      <td><p>line number in xml-file, where BERtoZero is defined, default is 56</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>abimo xml-input file with changed BERtoZero-setting</p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>kwb.abimo</span><span class='fu'>::</span><span class='fu'>default_config</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "/Users/runner/work/_temp/Library/kwb.abimo/extdata/config.xml"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
