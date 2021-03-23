@@ -157,10 +157,74 @@ entries</p>
     <p>returns string with modified parameter = value</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>string</span> <span class='op'>&lt;-</span> <span class='st'>'&lt;item bezirke="15,16,18,19,20" etp="807" etps="600" /&gt;'</span>
+    <pre class="examples"><div class='input'><span class='co'>### Simple string</span>
+<span class='va'>string</span> <span class='op'>&lt;-</span> <span class='st'>'&lt;item bezirke="15,16,18,19,20" etp="807" etps="600" /&gt;'</span>
 <span class='fu'>replace_value</span><span class='op'>(</span><span class='va'>string</span>, new_value <span class='op'>=</span> <span class='fl'>100</span>, parameter <span class='op'>=</span> <span class='st'>"etp"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "&lt;item bezirke=\"15,16,18,19,20\" etp=\"100\" etps=\"600\" /&gt;"</div><div class='input'><span class='fu'>replace_value</span><span class='op'>(</span><span class='va'>string</span>, new_value <span class='op'>=</span> <span class='fl'>100</span>, parameter <span class='op'>=</span> <span class='st'>"etps"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "&lt;item bezirke=\"15,16,18,19,20\" etp=\"807\" etps=\"100\" /&gt;"</div></pre>
+</div><div class='output co'>#&gt; [1] "&lt;item bezirke=\"15,16,18,19,20\" etp=\"807\" etps=\"100\" /&gt;"</div><div class='input'><span class='co'>### Default ABIMO config</span>
+<span class='va'>config</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='fu'>kwb.abimo</span><span class='fu'>::</span><span class='fu'><a href='extdata_file.html'>extdata_file</a></span><span class='op'>(</span><span class='st'>"config.xml"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>replace_value</span><span class='op'>(</span><span class='va'>config</span>, new_value <span class='op'>=</span> <span class='fl'>100</span>, parameter <span class='op'>=</span> <span class='st'>"etp"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;"                                                                
+#&gt;  [2] "&lt;sections&gt;"                                                                                                
+#&gt;  [3] "\t&lt;comment&gt;"                                                                                               
+#&gt;  [4] "                Initiale Werte der Kalkulation von Abimo 3.2."                                             
+#&gt;  [5] "                Genaueres ist der Dokumentation von Abimo entnehmen."                                      
+#&gt;  [6] "\t&lt;/comment&gt;"                                                                                              
+#&gt;  [7] "\t&lt;section name=\"Infiltrationsfaktoren\"&gt;"                                                                
+#&gt;  [8] "\t\t&lt;item key=\"Dachflaechen\"   value=\"0.00\" /&gt;"                                                        
+#&gt;  [9] "\t\t&lt;item key=\"Belaglsklasse1\" value=\"0.10\" /&gt;"                                                        
+#&gt; [10] "\t\t&lt;item key=\"Belaglsklasse2\" value=\"0.30\" /&gt;"                                                        
+#&gt; [11] "\t\t&lt;item key=\"Belaglsklasse3\" value=\"0.60\" /&gt;"                                                        
+#&gt; [12] "\t\t&lt;item key=\"Belaglsklasse4\" value=\"0.90\" /&gt;"                                                        
+#&gt; [13] "\t&lt;/section&gt;"                                                                                              
+#&gt; [14] "\t&lt;section name=\"Bagrovwerte\"&gt;"                                                                          
+#&gt; [15] "\t\t&lt;item key=\"Dachflaechen\"   value=\"0.05\" /&gt;"                                                        
+#&gt; [16] "\t\t&lt;item key=\"Belaglsklasse1\" value=\"0.11\" /&gt;"                                                        
+#&gt; [17] "\t\t&lt;item key=\"Belaglsklasse2\" value=\"0.11\" /&gt;"                                                        
+#&gt; [18] "\t\t&lt;item key=\"Belaglsklasse3\" value=\"0.25\" /&gt;"                                                        
+#&gt; [19] "\t\t&lt;item key=\"Belaglsklasse4\" value=\"0.40\" /&gt;"                                                        
+#&gt; [20] "\t&lt;/section&gt;"                                                                                              
+#&gt; [21] "\t&lt;section name=\"ErgebnisNachkommaStellen\"&gt;"                                                             
+#&gt; [22] "       \t\t&lt;item key=\"R\" value=\"3\" /&gt;"                                                                 
+#&gt; [23] "       \t\t&lt;item key=\"ROW\" value=\"3\" /&gt;"                                                               
+#&gt; [24] "       \t\t&lt;item key=\"RI\" value=\"3\" /&gt;"                                                                
+#&gt; [25] "       \t\t&lt;item key=\"RVOL\" value=\"3\" /&gt;"                                                              
+#&gt; [26] "       \t\t&lt;item key=\"ROWVOL\" value=\"3\" /&gt;"                                                            
+#&gt; [27] "       \t\t&lt;item key=\"RIVOL\" value=\"3\" /&gt;"                                                             
+#&gt; [28] "\t\t&lt;item key=\"FLAECHE\" value=\"0\" /&gt; "                                                                 
+#&gt; [29] "\t\t&lt;item key=\"VERDUNSTUNG\" value=\"3\" /&gt;"                                                              
+#&gt; [30] "\t&lt;/section&gt;"                                                                                              
+#&gt; [31] "        &lt;section name=\"Gewaesserverdunstung\"&gt;"                                                           
+#&gt; [32] ""                                                                                                          
+#&gt; [33] "            &lt;item bezirke=\"1-6,13-15,17\"  eg=\"825\" /&gt;"                                                 
+#&gt; [34] "            &lt;item bezirke=\"7-12,16,18-23\" eg=\"775\" /&gt;"                                                 
+#&gt; [35] ""                                                                                                          
+#&gt; [36] "            &lt;!-- das ist der default wert (Bezirk=0) --&gt;"                                                  
+#&gt; [37] "            &lt;item eg=\"775\" /&gt;"                                                                           
+#&gt; [38] ""                                                                                                          
+#&gt; [39] "        &lt;/section&gt;"                                                                                        
+#&gt; [40] "        &lt;section name=\"PotentielleVerdunstung\"&gt;"                                                         
+#&gt; [41] ""                                                                                                          
+#&gt; [42] "            &lt;item bezirke=\"15,16,18,19,20\"     etp=\"100\" etps=\"500\" /&gt;"                              
+#&gt; [43] "            &lt;item bezirke=\"8,9,10,12,21,22,23\" etp=\"100\" etps=\"505\" /&gt;"                              
+#&gt; [44] "            &lt;item bezirke=\"13,14,17\"           etp=\"100\" etps=\"515\" /&gt;"                              
+#&gt; [45] "            &lt;item bezirke=\"2,3,4\"              etp=\"100\" etps=\"520\" /&gt;"                              
+#&gt; [46] "            &lt;item bezirke=\"1,5,6,7,11\"         etp=\"100\" etps=\"530\" /&gt;"                              
+#&gt; [47] ""                                                                                                          
+#&gt; [48] "            &lt;!-- das ist der default wert (Bezirk=0) --&gt;"                                                  
+#&gt; [49] "            &lt;item etp=\"100\" etps=\"530\" /&gt;"                                                             
+#&gt; [50] ""                                                                                                          
+#&gt; [51] "        &lt;/section&gt;"                                                                                        
+#&gt; [52] ""                                                                                                          
+#&gt; [53] "        &lt;section name=\"Diverse\"&gt;"                                                                        
+#&gt; [54] "\t"                                                                                                        
+#&gt; [55] "\t\t&lt;!-- wenn 'true' wird BER (Beregnungshoehe landw. Nutzfl.) == 0 erzwungen, fuer alle Flaechentypen --&gt;"
+#&gt; [56] "       \t\t&lt;item key=\"BERtoZero\" value=\"false\" /&gt;"                                                     
+#&gt; [57] ""                                                                                                          
+#&gt; [58] "                &lt;!-- Niederschlags-Korrekturfaktor --&gt;"                                                    
+#&gt; [59] "                &lt;item key=\"NIEDKORRF\" value=\"1.09\" /&gt;"                                                 
+#&gt; [60] "\t&lt;/section&gt;"                                                                                              
+#&gt; [61] "&lt;/sections&gt;"                                                                                               </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
