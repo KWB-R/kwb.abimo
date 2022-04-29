@@ -61,6 +61,12 @@
     <loc>/reference/replace_value.html</loc>
   </url>
   <url>
+    <loc>/reference/run_abimo.html</loc>
+  </url>
+  <url>
+    <loc>/reference/run_abimo_command_line.html</loc>
+  </url>
+  <url>
     <loc>/reference/write.dbf.abimo.html</loc>
   </url>
 </urlset>
