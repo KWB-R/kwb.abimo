@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">kwb.abimo</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
 <h2 id="basic-model-run">Basic model run<a class="anchor" aria-label="anchor" href="#basic-model-run"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va">abimo_input_2019</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></code></pre></div>
 </div>
@@ -92,7 +92,7 @@
 <h2 id="load-and-modify-input-data">Load and modify input data<a class="anchor" aria-label="anchor" href="#load-and-modify-input-data"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">abimo_data</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va">abimo_input_2019</span>
+<code class="sourceCode R"><span class="va">abimo_data</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>
 
 <span class="co"># Have a look at the column types. IMPORTANT: Modifications must not change the</span>
 <span class="co"># types!</span>
@@ -117,7 +117,7 @@
 <span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fl">600L</span>
 
 <span class="co"># Or e.g.</span>
-<span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fl">1.05</span> <span class="op">*</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va">abimo_input_2019</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span>
+<span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fl">1.05</span> <span class="op">*</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now integer (again)</span></code></pre></div>
 </div>
@@ -190,7 +190,7 @@
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>
-  input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va">abimo_input_2019</span>,
+  input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>,
   config <span class="op">=</span> <span class="va">config</span>
 <span class="op">)</span>
 
