@@ -10,6 +10,12 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>/articles/running-abimo.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -49,10 +55,16 @@
     <loc>/reference/appendSubToFile.html</loc>
   </url>
   <url>
+    <loc>/reference/create_configurator.html</loc>
+  </url>
+  <url>
     <loc>/reference/default_config.html</loc>
   </url>
   <url>
     <loc>/reference/extdata_file.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_xpaths.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
