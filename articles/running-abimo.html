@@ -92,34 +92,34 @@
 <h2 id="load-and-modify-input-data">Load and modify input data<a class="anchor" aria-label="anchor" href="#load-and-modify-input-data"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">abimo_data</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>
+<code class="sourceCode R"><span class="va">input_data</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>
 
 <span class="co"># Have a look at the column types. IMPORTANT: Modifications must not change the</span>
 <span class="co"># types!</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">abimo_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">)</span>
 
 <span class="co"># Assigning a value of e.g. 600 to an integer column converts the column</span>
 <span class="co"># type to double (floating point)!</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># integer</span>
+<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># integer</span>
 
-<span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fl">600</span>
+<span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fl">600</span>
 
 <span class="co"># run_abimo() will complain now...</span>
-<span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="va">abimo_data</span><span class="op">)</span>
+<span class="co">#kwb.abimo::run_abimo(input_data = input_data)</span>
 <span class="co"># Error: Column 'REGENJA' does not have the expected type (integer)!</span>
 
 <span class="co"># Really?</span>
-<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now double</span>
+<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now double</span>
 
 <span class="co"># Problem: By assigning 600, the type was implicitly converted to double.</span>
 <span class="co"># Use "L" to indicate integer values (or use as.numeric())</span>
-<span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fl">600L</span>
+<span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fl">600L</span>
 
 <span class="co"># Or e.g.</span>
-<span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fl">1.05</span> <span class="op">*</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span>
+<span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fl">1.05</span> <span class="op">*</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">abimo_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now integer (again)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now integer (again)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="run-abimo-with-the-modified-data">Run Abimo with the modified data<a class="anchor" aria-label="anchor" href="#run-abimo-with-the-modified-data"></a>
