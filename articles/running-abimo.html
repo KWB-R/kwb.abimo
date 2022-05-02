@@ -133,8 +133,8 @@
 <h2 id="load-and-modify-a-configuration-config-xml">Load and modify a configuration (config.xml)<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configuration-config-xml"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Create a configurator object from a Abimo configuration file</span>
-<span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/create_configurator.html">create_configurator</a></span><span class="op">(</span><span class="st">"~/qt-projects/abimo/data/config.xml"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># Create a configurator object (from default config.xml stored in this package)</span>
+<span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/create_configurator.html">create_configurator</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># Provide xpath expressions as a means of addressing the single config elements</span>
 <span class="va">xpaths</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/get_xpaths.html">get_xpaths</a></span><span class="op">(</span><span class="op">)</span>
