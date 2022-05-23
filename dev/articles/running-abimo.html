@@ -131,60 +131,70 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="load-and-modify-a-configuration-config-xml">Load and modify a configuration (config.xml)<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configuration-config-xml"></a>
+<h2 id="load-and-modify-a-configuration-config-xml-updated-for-v0-2-0">Load and modify a configuration (config.xml), updated for v0.2.0!<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configuration-config-xml-updated-for-v0-2-0"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Create a configurator object (from default config.xml stored in this package)</span>
-<span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/create_configurator.html">create_configurator</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># Create a configuration object (from default config.xml stored in this package)</span>
+<span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">:::</span><span class="fu">read_config</span><span class="op">(</span><span class="op">)</span>
 
-<span class="co"># Provide xpath expressions as a means of addressing the single config elements</span>
-<span class="va">xpaths</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/get_xpaths.html">get_xpaths</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># Show the content of one section of the configuration</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
 
-<span class="co"># Get/set Infiltrationsfaktoren using the xpath expressions...</span>
-<span class="va">xp</span> <span class="op">&lt;-</span> <span class="va">xpaths</span><span class="op">$</span><span class="va">Infiltrationsfaktoren</span>
+<span class="co"># Get/set Infiltrationsfaktoren and check the change</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Dachflaechen</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Dachflaechen</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>value <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Dachflaechen</span>
 
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">Dachflaechen</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">Dachflaechen</span>, <span class="fl">0.6</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">Dachflaechen</span><span class="op">)</span> <span class="co"># check the change</span>
+<span class="co"># Similar: other items "Belaglsklasse1", "Belaglsklasse2",</span>
+<span class="co"># "Belaglsklasse3", "Belaglsklasse4", e.g.</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Belaglsklasse2</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Belaglsklasse2</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>value <span class="op">=</span> <span class="fl">0.99</span><span class="op">)</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Belaglsklasse2</span>
 
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">Belaglsklasse1</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">Belaglsklasse1</span>, <span class="fl">0.99</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">Belaglsklasse1</span><span class="op">)</span> <span class="co"># check the change</span>
+<span class="co"># Similar: Get/set item values in sections "Bagrovwerte" or </span>
+<span class="co"># "ErgebnisNachkommaStellen", "Diverse"</span>
 
-<span class="co"># Get/set Bagrovwerte ...</span>
-<span class="va">xp</span> <span class="op">&lt;-</span> <span class="va">xpaths</span><span class="op">$</span><span class="va">Bagrovwerte</span>
-<span class="co"># ...</span>
+<span class="co"># More complicated: sections "Gewaesserverdunstung" and "PotentielleVerdunstung". </span>
+<span class="co"># Here we may want to keep only one entry for all "bezirke"</span>
 
-<span class="co"># Get/set ErgebnisNachkommaStellen...</span>
-<span class="va">xp</span> <span class="op">&lt;-</span> <span class="va">xpaths</span><span class="op">$</span><span class="va">ErgebnisNachkommaStellen</span>
-<span class="co"># ...</span>
+<span class="co"># Show section "PotentielleVerdunstung"</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
 
-<span class="co"># Get/set Diverse ...</span>
-<span class="va">xp</span> <span class="op">&lt;-</span> <span class="va">xpaths</span><span class="op">$</span><span class="va">Diverse</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">BERtoZero</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">BERtoZero</span>, <span class="st">"true"</span><span class="op">)</span>
+<span class="co"># Change values of an existing item</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item_1</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>
+  bezirke <span class="op">=</span> <span class="st">"123-125"</span>, etp <span class="op">=</span> <span class="fl">123</span>, etps <span class="op">=</span> <span class="fl">234</span>
+<span class="op">)</span>
 
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">NIEDKORRF</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">NIEDKORRF</span>, <span class="fl">1.23</span><span class="op">)</span>
+<span class="co"># Check the change</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
 
-<span class="co"># Check the changes</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">BERtoZero</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="va">xp</span><span class="op">$</span><span class="va">NIEDKORRF</span><span class="op">)</span>
+<span class="co"># This was just for demonstration. Now lets remove items 1 to 5</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">remove</span><span class="op">(</span><span class="st">"item_1"</span><span class="op">)</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">remove</span><span class="op">(</span><span class="st">"item_2"</span><span class="op">)</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">remove</span><span class="op">(</span><span class="st">"item_3"</span><span class="op">)</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">remove</span><span class="op">(</span><span class="st">"item_4"</span><span class="op">)</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">remove</span><span class="op">(</span><span class="st">"item_5"</span><span class="op">)</span>
 
-<span class="co"># More complicated: variable node sets</span>
+<span class="co"># Show the remaining item in section "Gewaesserverdunstung". </span>
+<span class="co"># Only the last item remains</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
 
-<span class="co"># Modify existing nodes</span>
-<span class="va">xp</span> <span class="op">&lt;-</span> <span class="va">xpaths</span><span class="op">$</span><span class="va">PotentielleVerdunstung</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get_nodes</span><span class="op">(</span><span class="va">xp</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">modify_node</span><span class="op">(</span><span class="va">xp</span>, i <span class="op">=</span> <span class="fl">1L</span>, bezirke <span class="op">=</span> <span class="st">"123-125"</span>, etp <span class="op">=</span> <span class="fl">123</span>, etps <span class="op">=</span> <span class="fl">234</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">modify_node</span><span class="op">(</span><span class="va">xp</span>, <span class="fl">6</span>, etp <span class="op">=</span> <span class="st">"666"</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get_nodes</span><span class="op">(</span><span class="va">xp</span><span class="op">)</span> <span class="co"># check the changes</span>
+<span class="co"># Even though removed from the XML tree the config structure still contains</span>
+<span class="co"># the removed items. E.g. item 5 still exists:</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item_5</span>
 
-<span class="va">xp</span> <span class="op">&lt;-</span> <span class="va">xpaths</span><span class="op">$</span><span class="va">PotentielleVerdunstung</span>
-<span class="va">config</span><span class="op">$</span><span class="fu">get_nodes</span><span class="op">(</span><span class="va">xp</span><span class="op">)</span>
-<span class="co">#config$modify_node(xp, ...)</span>
+<span class="co"># To remove the items also from the config structure, we need to update it</span>
+<span class="va">config</span> <span class="op">&lt;-</span> <span class="va">config</span><span class="op">$</span><span class="fu">update</span><span class="op">(</span><span class="op">)</span>
 
-<span class="co"># TODO: Add/remove nodes</span></code></pre></div>
+<span class="co"># Item 5 does not exist any more (is NULL):</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item_5</span>
+
+<span class="co"># Note that the list elements have been renamed. As there is only</span>
+<span class="co"># one remaining item, it is just called "item" (without a number)</span>
+
+<span class="co"># Change the value in the remaining item (representing all "bezirke")</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>etp <span class="op">=</span> <span class="fl">666</span>, etps <span class="op">=</span> <span class="fl">555</span><span class="op">)</span>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="run-abimo-with-the-modified-configuration">Run Abimo with the modified configuration<a class="anchor" aria-label="anchor" href="#run-abimo-with-the-modified-configuration"></a>
