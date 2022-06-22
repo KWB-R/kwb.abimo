@@ -17,8 +17,11 @@ abimo_binary <- function(tag = "v3.3.0")
 }
 
 # install_abimo ----------------------------------------------------------------
-
+#' Install ABIMO
+#' @param tag default: "v3.2.2"
 #' @importFrom archive archive_extract
+#' @importFrom kwb.utils createDirectory
+#' @export
 install_abimo <- function(tag = "v3.2.2")
 {
   exdir <- dirname(abimo_binary(tag))
@@ -43,10 +46,15 @@ NULL
 
 # download_asset ---------------------------------------------------------------
 
-#' @importFrom utils download.file
+#' @importFrom utils download.file getFromNamespace
 download_asset <- function(repo, tag, destfile = NULL)
 {
-  asset_info <- get_asset_info(repo, tag)
+
+  github_pat <- utils::getFromNamespace("github_pat", "remotes")
+
+
+  asset_info <- get_asset_info(repo, tag, token = github_pat())
+
 
   if (is.null(destfile)) {
     destfile <- file.path(
@@ -54,8 +62,6 @@ download_asset <- function(repo, tag, destfile = NULL)
       kwb.utils::selectElements(asset_info, "name")
     )
   }
-
-  github_pat <- utils::getFromNamespace("github_pat", "remotes")
 
   utils::download.file(
     kwb.utils::selectElements(asset_info, "url"),
@@ -71,16 +77,18 @@ download_asset <- function(repo, tag, destfile = NULL)
 }
 
 # get_asset_info ---------------------------------------------------------------
-
 #' @importFrom gh gh
-get_asset_info <- function(repo, tag)
+get_asset_info <- function(repo, tag, token = Sys.getenv("GITHUB_PAT"))
 {
   url_releases <- kwb.utils::resolve(
     "https://api.github.com/repos/<repo>/releases",
     repo = repo
   )
 
-  release_info <- gh::gh(url_releases)
+  token <- ifelse(token == "", NULL, token)
+
+  release_info <- gh::gh(url_releases,
+                         .token = token)
 
   tag_names <- sapply(release_info, "[[", "tag_name")
 

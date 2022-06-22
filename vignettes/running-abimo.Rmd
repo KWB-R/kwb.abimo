@@ -10,11 +10,14 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
+is_windows <- .Platform$OS.type == "windows"
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  eval = FALSE
+  eval = is_windows
 )
+is_windows <- .Platform$OS.type == "windows"
 ```
 
 This vignette aims at demonstrating how to work with the kwb.abimo package.
@@ -163,7 +166,7 @@ new_xml_file <- config$save(name = "config_tmp.xml")
 If something goes wrong, you may compare the created xml file with the
 original file, e.g. using TortoiseSVN->Diff...
 
-```{r open-tempdir}
+```{r open-tempdir, eval = FALSE}
 # Open the folder containing the xml file
 kwb.utils::hsOpenWindowsExplorer(dirname(new_xml_file))
 ```
