@@ -70,7 +70,7 @@
 
 
 <script src="running-abimo_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Running Abimo</h1>
             
       
@@ -86,8 +86,24 @@
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">)</span>
+<span class="co">#&gt; Installing Abimo to D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64 ... The directory "D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64" was created.</span>
+<span class="co">#&gt; ok. (0.94s)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span>
+<span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span>
+<span class="co">#&gt; 1 1000536281000000 290.063   0.000 290.063 585.425   0.000 585.425   63648</span>
+<span class="co">#&gt; 2 0700221581000100 410.831 249.475 161.356 457.318 277.705 179.614   35104</span>
+<span class="co">#&gt; 3 0700221391000100 422.356 261.911 160.445 502.827 311.813 191.014   37544</span>
+<span class="co">#&gt; 4 0700221401000000 389.757 220.770 168.986 631.977 357.971 274.006   51134</span>
+<span class="co">#&gt; 5 0700221581000200 361.886 211.796 150.089 212.424 124.323  88.102   18511</span>
+<span class="co">#&gt; 6 0700221561000000 471.360 360.978 110.381 420.133 321.747  98.385   28109</span>
+<span class="co">#&gt;   VERDUNSTUN</span>
+<span class="co">#&gt; 1    356.307</span>
+<span class="co">#&gt; 2    174.499</span>
+<span class="co">#&gt; 3    164.064</span>
+<span class="co">#&gt; 4    196.663</span>
+<span class="co">#&gt; 5    224.535</span>
+<span class="co">#&gt; 6    118.330</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-and-modify-input-data">Load and modify input data<a class="anchor" aria-label="anchor" href="#load-and-modify-input-data"></a>
@@ -98,11 +114,48 @@
 <span class="co"># Have a look at the column types. IMPORTANT: Modifications must not change the</span>
 <span class="co"># types!</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">)</span>
+<span class="co">#&gt; 'data.frame':    25352 obs. of  34 variables:</span>
+<span class="co">#&gt;  $ CODE      : Factor w/ 25352 levels "0100980011000100",..: 8934 3028 3006 3010 3029 3026 2961 2962 3007 9572 ...</span>
+<span class="co">#&gt;  $ BEZIRK    : int  10 7 7 7 7 7 7 7 7 12 ...</span>
+<span class="co">#&gt;  $ STAGEB    : int  53 22 22 22 22 22 22 22 22 62 ...</span>
+<span class="co">#&gt;  $ BLOCK     : int  628 158 139 140 158 156 92 93 139 627 ...</span>
+<span class="co">#&gt;  $ TEILBLOCK : int  0 1 1 0 2 0 2 1 3 2 ...</span>
+<span class="co">#&gt;  $ NUTZUNG   : int  10 21 10 21 50 50 10 10 130 50 ...</span>
+<span class="co">#&gt;  $ TYP       : int  23 7 7 7 13 45 11 11 53 47 ...</span>
+<span class="co">#&gt;  $ FLGES     : num  53741 25316 24656 40647 15605 ...</span>
+<span class="co">#&gt;  $ VG        : num  25.8 64.9 66.7 59.5 57.7 95.9 54.8 53.5 20.1 43.3 ...</span>
+<span class="co">#&gt;  $ PROBAU    : num  18.3 42.1 46 34.1 33.4 81.9 35.9 29.6 0.7 17.7 ...</span>
+<span class="co">#&gt;  $ PROVGU    : num  7.4 22.8 20.7 25.4 24.4 14 18.9 23.8 19.4 25.6 ...</span>
+<span class="co">#&gt;  $ REGENJA   : int  593 537 538 538 538 541 536 534 538 573 ...</span>
+<span class="co">#&gt;  $ REGENSO   : int  333 298 298 298 298 299 297 296 298 320 ...</span>
+<span class="co">#&gt;  $ BELAG1    : int  18 41 41 41 38 41 49 49 30 7 ...</span>
+<span class="co">#&gt;  $ BELAG2    : int  74 27 27 27 44 42 46 46 20 42 ...</span>
+<span class="co">#&gt;  $ BELAG3    : int  2 4 4 4 2 15 3 3 5 5 ...</span>
+<span class="co">#&gt;  $ BELAG4    : int  6 28 28 28 16 2 2 2 45 46 ...</span>
+<span class="co">#&gt;  $ VGSTRASSE : num  95.1 97.4 97.4 97.4 97.4 97.4 97.4 97.4 97.4 95.1 ...</span>
+<span class="co">#&gt;  $ STR_BELAG1: num  39.4 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 39.4 ...</span>
+<span class="co">#&gt;  $ STR_BELAG2: num  24.8 23 23 23 23 23 23 23 23 24.8 ...</span>
+<span class="co">#&gt;  $ STR_BELAG3: num  17.7 21.7 21.7 21.7 21.7 21.7 21.7 21.7 21.7 17.7 ...</span>
+<span class="co">#&gt;  $ STR_BELAG4: num  18.1 7.7 7.7 7.7 7.7 7.7 7.7 7.7 7.7 18.1 ...</span>
+<span class="co">#&gt;  $ KANAL     : int  0 1 1 1 1 1 1 1 0 1 ...</span>
+<span class="co">#&gt;  $ KANART    : int  5 1 1 1 1 1 1 1 0 2 ...</span>
+<span class="co">#&gt;  $ KAN_BEB   : int  0 94 94 94 90 89 86 86 0 89 ...</span>
+<span class="co">#&gt;  $ KAN_VGU   : int  0 65 65 65 68 70 50 50 0 48 ...</span>
+<span class="co">#&gt;  $ KAN_STR   : int  0 93 93 93 88 88 89 89 0 89 ...</span>
+<span class="co">#&gt;  $ FELD_30   : int  13 10 10 10 10 10 10 10 10 17 ...</span>
+<span class="co">#&gt;  $ FELD_150  : int  12 12 12 12 12 12 12 12 12 10 ...</span>
+<span class="co">#&gt;  $ FLUR      : num  8.5 4.1 14.8 5.8 4.6 14.4 4.2 3.2 16.6 11.8 ...</span>
+<span class="co">#&gt;  $ STR_FLGES : num  9907 9788 12889 10487 2906 ...</span>
+<span class="co">#&gt;  $ KOR_FL_N  : num  1 1 0.84 0.87 1 0.82 1 1 0.82 0.56 ...</span>
+<span class="co">#&gt;  $ AGEB1_NR  : Factor w/ 31 levels "110","120","130",..: NA NA NA NA NA NA NA NA NA 22 ...</span>
+<span class="co">#&gt;  $ AGEB1     : chr  NA NA NA NA ...</span>
+<span class="co">#&gt;  - attr(*, "data_types")= chr [1:34] "C" "N" "N" "N" ...</span>
 
 <span class="co"># Assigning a value of e.g. 600 to an integer column converts the column</span>
 <span class="co"># type to double (floating point)!</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># integer</span>
+<span class="co">#&gt; [1] "integer"</span>
 
 <span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fl">600</span>
 
@@ -112,6 +165,7 @@
 
 <span class="co"># Really?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now double</span>
+<span class="co">#&gt; [1] "double"</span>
 
 <span class="co"># Problem: By assigning 600, the type was implicitly converted to double.</span>
 <span class="co"># Use "L" to indicate integer values (or use as.integer())</span>
@@ -120,7 +174,8 @@
 <span class="co"># Or e.g.</span>
 <span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fl">1.05</span> <span class="op">*</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now integer (again)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">input_data</span><span class="op">$</span><span class="va">REGENJA</span><span class="op">)</span> <span class="co"># now integer (again)</span>
+<span class="co">#&gt; [1] "integer"</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="run-abimo-with-the-modified-data">Run Abimo with the modified data<a class="anchor" aria-label="anchor" href="#run-abimo-with-the-modified-data"></a>
@@ -128,7 +183,21 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="va">input_data</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span>
+<span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span>
+<span class="co">#&gt; 1 1000536281000000 315.270   0.000 315.270 636.299   0.000 636.299   63648</span>
+<span class="co">#&gt; 2 0700221581000100 434.707 262.340 172.367 483.896 292.025 191.871   35104</span>
+<span class="co">#&gt; 3 0700221391000100 446.691 275.414 171.277 531.799 327.889 203.910   37544</span>
+<span class="co">#&gt; 4 0700221401000000 412.824 232.126 180.698 669.380 376.385 292.996   51134</span>
+<span class="co">#&gt; 5 0700221581000200 384.020 222.665 161.355 225.417 130.703  94.714   18511</span>
+<span class="co">#&gt; 6 0700221561000000 496.795 380.011 116.783 442.803 338.712 104.091   28109</span>
+<span class="co">#&gt;   VERDUNSTUN</span>
+<span class="co">#&gt; 1    362.710</span>
+<span class="co">#&gt; 2    178.963</span>
+<span class="co">#&gt; 3    168.069</span>
+<span class="co">#&gt; 4    201.936</span>
+<span class="co">#&gt; 5    230.740</span>
+<span class="co">#&gt; 6    122.325</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-and-modify-a-configuration-config-xml-updated-for-v0-2-0">Load and modify a configuration (config.xml), updated for v0.2.0!<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configuration-config-xml-updated-for-v0-2-0"></a>
@@ -139,17 +208,32 @@
 
 <span class="co"># Show the content of one section of the configuration</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;section name="Infiltrationsfaktoren"&gt;</span>
+<span class="co">#&gt; [1] &lt;item key="Dachflaechen" value="0.00"/&gt;</span>
+<span class="co">#&gt; [2] &lt;item key="Belaglsklasse1" value="0.10"/&gt;</span>
+<span class="co">#&gt; [3] &lt;item key="Belaglsklasse2" value="0.30"/&gt;</span>
+<span class="co">#&gt; [4] &lt;item key="Belaglsklasse3" value="0.60"/&gt;</span>
+<span class="co">#&gt; [5] &lt;item key="Belaglsklasse4" value="0.90"/&gt;</span>
 
 <span class="co"># Get/set Infiltrationsfaktoren and check the change</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Dachflaechen</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;item key="Dachflaechen" value="0.00"&gt;</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Dachflaechen</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>value <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Dachflaechen</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;item key="Dachflaechen" value="0.6"&gt;</span>
 
 <span class="co"># Similar: other items "Belaglsklasse1", "Belaglsklasse2",</span>
 <span class="co"># "Belaglsklasse3", "Belaglsklasse4", e.g.</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Belaglsklasse2</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;item key="Belaglsklasse2" value="0.30"&gt;</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Belaglsklasse2</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>value <span class="op">=</span> <span class="fl">0.99</span><span class="op">)</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_Infiltrationsfaktoren</span><span class="op">$</span><span class="va">item_Belaglsklasse2</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;item key="Belaglsklasse2" value="0.99"&gt;</span>
 
 <span class="co"># Similar: Get/set item values in sections "Bagrovwerte" or </span>
 <span class="co"># "ErgebnisNachkommaStellen", "Diverse"</span>
@@ -159,6 +243,14 @@
 
 <span class="co"># Show section "PotentielleVerdunstung"</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;section name="PotentielleVerdunstung"&gt;</span>
+<span class="co">#&gt; [1] &lt;item bezirke="15,16,18,19,20" etp="620" etps="500"/&gt;</span>
+<span class="co">#&gt; [2] &lt;item bezirke="8,9,10,12,21,22,23" etp="630" etps="505"/&gt;</span>
+<span class="co">#&gt; [3] &lt;item bezirke="13,14,17" etp="640" etps="515"/&gt;</span>
+<span class="co">#&gt; [4] &lt;item bezirke="2,3,4" etp="650" etps="520"/&gt;</span>
+<span class="co">#&gt; [5] &lt;item bezirke="1,5,6,7,11" etp="660" etps="530"/&gt;</span>
+<span class="co">#&gt; [6] &lt;item etp="660" etps="530"/&gt;</span>
 
 <span class="co"># Change values of an existing item</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item_1</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>
@@ -167,6 +259,14 @@
 
 <span class="co"># Check the change</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;section name="PotentielleVerdunstung"&gt;</span>
+<span class="co">#&gt; [1] &lt;item bezirke="123-125" etp="123" etps="234"/&gt;</span>
+<span class="co">#&gt; [2] &lt;item bezirke="8,9,10,12,21,22,23" etp="630" etps="505"/&gt;</span>
+<span class="co">#&gt; [3] &lt;item bezirke="13,14,17" etp="640" etps="515"/&gt;</span>
+<span class="co">#&gt; [4] &lt;item bezirke="2,3,4" etp="650" etps="520"/&gt;</span>
+<span class="co">#&gt; [5] &lt;item bezirke="1,5,6,7,11" etp="660" etps="530"/&gt;</span>
+<span class="co">#&gt; [6] &lt;item etp="660" etps="530"/&gt;</span>
 
 <span class="co"># This was just for demonstration. Now lets remove items 1 to 5</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">remove</span><span class="op">(</span><span class="st">"item_1"</span><span class="op">)</span>
@@ -178,23 +278,31 @@
 <span class="co"># Show the remaining item in section "Gewaesserverdunstung". </span>
 <span class="co"># Only the last item remains</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="fu">get_xml</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;section name="PotentielleVerdunstung"&gt;</span>
+<span class="co">#&gt; [1] &lt;item etp="660" etps="530"/&gt;</span>
 
 <span class="co"># Even though removed from the XML tree the config structure still contains</span>
 <span class="co"># the removed items. E.g. item 5 still exists:</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item_5</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;item bezirke="1,5,6,7,11" etp="660" etps="530"&gt;</span>
 
 <span class="co"># To remove the items also from the config structure, we need to update it</span>
 <span class="va">config</span> <span class="op">&lt;-</span> <span class="va">config</span><span class="op">$</span><span class="fu">update</span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># Item 5 does not exist any more (is NULL):</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item_5</span>
+<span class="co">#&gt; NULL</span>
 
 <span class="co"># Note that the list elements have been renamed. As there is only</span>
 <span class="co"># one remaining item, it is just called "item" (without a number)</span>
 
 <span class="co"># Change the value in the remaining item (representing all "bezirke")</span>
 <span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>etp <span class="op">=</span> <span class="fl">666</span>, etps <span class="op">=</span> <span class="fl">555</span><span class="op">)</span>
-<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item</span></code></pre></div>
+<span class="va">config</span><span class="op">$</span><span class="va">section_PotentielleVerdunstung</span><span class="op">$</span><span class="va">item</span>
+<span class="co">#&gt; {xml_node}</span>
+<span class="co">#&gt; &lt;item etp="666" etps="555"&gt;</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="run-abimo-with-the-modified-configuration">Run Abimo with the modified configuration<a class="anchor" aria-label="anchor" href="#run-abimo-with-the-modified-configuration"></a>
@@ -204,18 +312,40 @@
   input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>,
   config <span class="op">=</span> <span class="va">config</span>
 <span class="op">)</span>
+<span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\RtmpYRC9Ux/config_20220622-200035.xml ... ok. (0.00s)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span>
+<span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span>
+<span class="co">#&gt; 1 1000536281000000 293.946   0.000 293.946 593.261   0.000 593.261   63648</span>
+<span class="co">#&gt; 2 0700221581000100 327.276 135.355 191.921 364.308 150.671 213.637   35104</span>
+<span class="co">#&gt; 3 0700221391000100 338.859 145.362 193.497 403.421 173.058 230.364   37544</span>
+<span class="co">#&gt; 4 0700221401000000 315.900 118.520 197.380 512.222 192.177 320.045   51134</span>
+<span class="co">#&gt; 5 0700221581000200 288.330 105.502 182.829 169.248  61.929 107.319   18511</span>
+<span class="co">#&gt; 6 0700221561000000 315.560 177.102 138.458 281.265 157.855 123.411   28109</span>
+<span class="co">#&gt;   VERDUNSTUN</span>
+<span class="co">#&gt; 1    352.425</span>
+<span class="co">#&gt; 2    258.054</span>
+<span class="co">#&gt; 3    247.561</span>
+<span class="co">#&gt; 4    270.520</span>
+<span class="co">#&gt; 5    298.090</span>
+<span class="co">#&gt; 6    274.130</span></code></pre></div>
 <p>Internally, a new <code>config_&lt;date-time-string&gt;.xml</code> file was created in the temporary folder:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "abimo_input.dbf"               "abimo_input_result.dbf"       </span>
+<span class="co">#&gt;  [3] "abimo_input_result.log"        "abimo_v3.3.0_win64.zip"       </span>
+<span class="co">#&gt;  [5] "config_20220622-200035.xml"    "file8e42a382c2d"              </span>
+<span class="co">#&gt;  [7] "file8e42bf559fe"               "file8e4428061aa"              </span>
+<span class="co">#&gt;  [9] "file8e461035966"               "file8e4722ad0"                </span>
+<span class="co">#&gt; [11] "file8e4e0c1d5f"                "rmarkdown-str8e4608577c1.html"</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="manually-save-configuration-object-to-xml">Manually save configuration object to XML<a class="anchor" aria-label="anchor" href="#manually-save-configuration-object-to-xml"></a>
 </h2>
 <p>You may create your own config files from config objects using <code><a href="https://rdrr.io/r/base/save.html" class="external-link">save()</a></code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_xml_file</span> <span class="op">&lt;-</span> <span class="va">config</span><span class="op">$</span><span class="fu">save</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"config_tmp.xml"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">new_xml_file</span> <span class="op">&lt;-</span> <span class="va">config</span><span class="op">$</span><span class="fu">save</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"config_tmp.xml"</span><span class="op">)</span>
+<span class="co">#&gt; Writing D:/a/_temp/Library/kwb.abimo/extdata/config_tmp.xml ... ok. (0.00s)</span></code></pre></div>
 <p>If something goes wrong, you may compare the created xml file with the original file, e.g. using TortoiseSVN-&gt;Diff…</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Open the folder containing the xml file</span>
@@ -234,7 +364,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer>

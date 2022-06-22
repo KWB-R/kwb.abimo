@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/dev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/dev/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>/dev/articles/index.html</loc>
   </url>
   <url>
@@ -19,13 +13,16 @@
     <loc>/dev/index.html</loc>
   </url>
   <url>
+    <loc>/dev/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>/dev/LICENSE.html</loc>
+  </url>
+  <url>
     <loc>/dev/news/index.html</loc>
   </url>
   <url>
     <loc>/dev/reference/ABIMO_adapt_map.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/ABIMO_read_output.html</loc>
   </url>
   <url>
     <loc>/dev/reference/abimo_Berlin_average.html</loc>
@@ -41,6 +38,9 @@
   </url>
   <url>
     <loc>/dev/reference/abimo_input_2019.html</loc>
+  </url>
+  <url>
+    <loc>/dev/reference/ABIMO_read_output.html</loc>
   </url>
   <url>
     <loc>/dev/reference/abimo_xml_BER.html</loc>
