@@ -87,7 +87,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">)</span>
 <span class="co">#&gt; Installing Abimo to D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64 ... The directory "D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64" was created.</span>
-<span class="co">#&gt; ok. (2.69s)</span>
+<span class="co">#&gt; ok. (1.84s)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span>
 <span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span>
@@ -312,7 +312,7 @@
   input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>,
   config <span class="op">=</span> <span class="va">config</span>
 <span class="op">)</span>
-<span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\Rtmpuqcxy3/config_20220623-164140.xml ... ok. (0.00s)</span>
+<span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\Rtmp4I9gAa/config_20220623-164724.xml ... ok. (0.00s)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span>
 <span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span>
@@ -332,12 +332,12 @@
 <p>Internally, a new <code>config_&lt;date-time-string&gt;.xml</code> file was created in the temporary folder:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "abimo_input.dbf"              "abimo_input_result.dbf"      </span>
-<span class="co">#&gt;  [3] "abimo_input_result.log"       "abimo_v3.3.0_win64.zip"      </span>
-<span class="co">#&gt;  [5] "config_20220623-164140.xml"   "file96430827365"             </span>
-<span class="co">#&gt;  [7] "file96443381787"              "file96446586516"             </span>
-<span class="co">#&gt;  [9] "file964628b2887"              "file9646889f6f"              </span>
-<span class="co">#&gt; [11] "file9647d396cf1"              "rmarkdown-str964396959b.html"</span></code></pre></div>
+<span class="co">#&gt;  [1] "abimo_input.dbf"               "abimo_input_result.dbf"       </span>
+<span class="co">#&gt;  [3] "abimo_input_result.log"        "abimo_v3.3.0_win64.zip"       </span>
+<span class="co">#&gt;  [5] "config_20220623-164724.xml"    "file69823474cea"              </span>
+<span class="co">#&gt;  [7] "file698291b3971"               "file6983a841ef7"              </span>
+<span class="co">#&gt;  [9] "file6984e7e3f91"               "file69858611bee"              </span>
+<span class="co">#&gt; [11] "file698736b6fd9"               "rmarkdown-str69863bb65b1.html"</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="manually-save-configuration-object-to-xml">Manually save configuration object to XML<a class="anchor" aria-label="anchor" href="#manually-save-configuration-object-to-xml"></a>
