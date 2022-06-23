@@ -1,7 +1,7 @@
 # read_config ------------------------------------------------------------------
 read_config <- function(file = default_config_file())
 {
-  dive_into(xml2::read_xml(file), file)
+  dive_into(x = xml2::read_xml(file), file)
 }
 
 # dive_into --------------------------------------------------------------------
@@ -11,6 +11,10 @@ dive_into <- function(x, xml_file, depth = 0L)
   children <- get_named_children(x)
 
   if (length(children) == 0L) {
+
+    x$get <- function() {
+      xml2::xml_attrs(x)
+    }
 
     x$set <- function(...) {
       args <- list(...)
