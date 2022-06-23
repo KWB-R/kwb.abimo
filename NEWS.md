@@ -1,3 +1,7 @@
+# Latest developments
+
+*
+
 # kwb.abimo 0.2.0 (2022-06-23)
 
 * Set GITHUB_PAT correctly in GitHub Actions configuration files
