@@ -12,8 +12,12 @@ dive_into <- function(x, xml_file, depth = 0L)
 
   if (length(children) == 0L) {
 
-    x$get <- function() {
-      xml2::xml_attrs(x)
+    x$get <- function(name = NULL) {
+      attrs <- xml2::xml_attrs(x)
+      if (is.null(name)) {
+        return(attrs)
+      }
+      kwb.utils::selectElements(as.list(attrs), name)
     }
 
     x$set <- function(...) {
