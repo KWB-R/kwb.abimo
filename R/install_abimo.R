@@ -19,19 +19,33 @@ abimo_binary <- function(tag = "v3.3.0")
 # install_abimo ----------------------------------------------------------------
 
 #' @importFrom archive archive_extract
-install_abimo <- function(tag = "v3.2.2")
+install_abimo <- function(tag = "v3.2.2", arch = "win64")
 {
+  if (arch != "win64") {
+    stop("Currently, the abimo executable is only available for win64")
+  }
+
   exdir <- dirname(abimo_binary(tag))
 
   kwb.utils::catAndRun(paste("Installing Abimo to", exdir), {
 
     # Download abimo executable and dependencies in zip file
     #repo = "KWB-R/abimo"; tag = "v3.2.2"
-    zip_file <- download_asset(repo = "KWB-R/abimo", tag = tag)
+    zip_files <- download_assets(
+      repo = "KWB-R/abimo",
+      tag = tag,
+      pattern = sprintf("abimo_%s_%s\\.", tag, arch)
+    )
+
+    stopifnot(length(zip_files) == 1L)
 
     kwb.utils::createDirectory(exdir)
 
-    archive::archive_extract(zip_file, dir = exdir, strip_components = 1L)
+    archive::archive_extract(
+      zip_files[1L],
+      dir = exdir,
+      strip_components = 1L
+    )
   })
 
   invisible(exdir)
@@ -41,33 +55,39 @@ install_abimo <- function(tag = "v3.2.2")
 #' @importFrom remotes available_packages
 NULL
 
-# download_asset ---------------------------------------------------------------
+# download_assets -------------------------------------------------------
 
 #' @importFrom utils download.file
-download_asset <- function(repo, tag, destfile = NULL)
+download_assets <- function(
+    repo,
+    tag,
+    destdir = tempdir(),
+    pattern = NULL,
+    accept = "application/octet-stream"
+)
 {
   asset_info <- get_asset_info(repo, tag)
 
-  if (is.null(destfile)) {
-    destfile <- file.path(
-      tempdir(),
-      kwb.utils::selectElements(asset_info, "name")
-    )
+  if (!is.null(pattern)) {
+    asset_info <- asset_info[grepl(pattern, asset_info$name), ]
   }
 
   github_pat <- utils::getFromNamespace("github_pat", "remotes")
 
-  utils::download.file(
-    kwb.utils::selectElements(asset_info, "url"),
-    destfile,
-    headers = c(
-      Authorization = paste("token", github_pat()),
-      Accept = "application/octet-stream"
-    ),
-    mode = "wb"
-  )
+  for (i in seq_len(nrow(asset_info))) {
 
-  destfile
+    utils::download.file(
+      url = asset_info$url[i],
+      destfile = file.path(destdir, asset_info$name[i]),
+      headers = c(
+        Authorization = paste("token", github_pat()),
+        Accept = accept
+      ),
+      mode = "wb"
+    )
+  }
+
+  file.path(destdir, asset_info$name)
 }
 
 # get_asset_info ---------------------------------------------------------------
@@ -92,7 +112,7 @@ get_asset_info <- function(repo, tag)
     stop("There are no assets for release ", version)
   }
 
-  asset <- assets[[1L]]
-
-  kwb.utils::selectElements(asset, c("name", "url"))
+  do.call(rbind, lapply(assets, function(asset) {
+    kwb.utils::asNoFactorDataFrame(asset[c("name", "url")])
+  }))
 }
