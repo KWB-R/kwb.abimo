@@ -50,10 +50,10 @@ run_abimo <- function(
     output_file, default_output_file(input_file)
   )
 
-  args <- kwb.utils::fullWinPath(c(input_file, output_file))
+  args <- full_quoted_path(c(input_file, output_file))
 
   if (! is.null(config_file)) {
-    args <- c(args, paste("--config", kwb.utils::fullWinPath(config_file)))
+    args <- c(args, paste("--config", full_quoted_path(config_file)))
   }
 
   # TODO: Let Abimo.exe return non-failure exit codes!
@@ -66,6 +66,21 @@ run_abimo <- function(
 latest_abimo_version <- function()
 {
   "v3.3.0"
+}
+
+# full_quoted_path -------------------------------------------------------------
+full_quoted_path <- function(x)
+{
+  # E.g. replace leading tilde by home directory
+  x <- path.expand(x)
+
+  # Convert slashes to backslashes on windows
+  if (Sys.info()["sysname"] == "Windows") {
+    x <- kwb.utils::windowsPath(x)
+  }
+
+  # Surround paths in double quotes just in case they contain spaces
+  paste0('"', x, '"')
 }
 
 # default_output_file ----------------------------------------------------------
