@@ -12,12 +12,12 @@
 #'   returned by \code{create_configurator}. If given, \code{config_file} is
 #'   ignored.
 #' @param tag version tag of Abimo release to be used, see
-#'   \url{https://github.com/KWB-R/abimo/releases}
+#'   \url{https://github.com/KWB-R/abimo/releases}.
 #' @return data frame, read from dbf file that was created by Abimo.exe
 #' @export
 run_abimo <- function(
   input_file = NULL, input_data = NULL, output_file = NULL, config_file = NULL,
-  config = NULL, tag = "v3.3.0"
+  config = NULL, tag = latest_abimo_version()
 )
 {
   if (is.null(input_file) && is.null(input_data)) {
@@ -62,6 +62,12 @@ run_abimo <- function(
   foreign::read.dbf(output_file)
 }
 
+# latest_abimo_version ---------------------------------------------------------
+latest_abimo_version <- function()
+{
+  "v3.3.0"
+}
+
 # default_output_file ----------------------------------------------------------
 default_output_file <- function(input_file)
 {
@@ -78,7 +84,7 @@ default_output_file <- function(input_file)
 #' @return The function returns what Abimo.exe sent to the standard output (as a
 #'   vector of character).
 #' @export
-run_abimo_command_line <- function(args, tag = "v3.3.0")
+run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
   output <- system2(abimo_binary(tag), args = args, stdout = TRUE)
 

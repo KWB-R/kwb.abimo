@@ -4,7 +4,7 @@
 \alias{run_abimo_command_line}
 \title{Run Abimo on the Command Line}
 \usage{
-run_abimo_command_line(args, tag = "v3.3.0")
+run_abimo_command_line(args, tag = latest_abimo_version())
 }
 \arguments{
 \item{args}{vector of arguments to be passed to Abimo}

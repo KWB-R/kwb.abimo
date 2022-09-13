@@ -10,7 +10,7 @@ run_abimo(
   output_file = NULL,
   config_file = NULL,
   config = NULL,
-  tag = "v3.3.0"
+  tag = latest_abimo_version()
 )
 }
 \arguments{
@@ -29,7 +29,7 @@ returned by \code{create_configurator}. If given, \code{config_file} is
 ignored.}
 
 \item{tag}{version tag of Abimo release to be used, see
-\url{https://github.com/KWB-R/abimo/releases}}
+\url{https://github.com/KWB-R/abimo/releases}.}
 }
 \value{
 data frame, read from dbf file that was created by Abimo.exe

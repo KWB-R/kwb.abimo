@@ -1,5 +1,5 @@
 # check_abimo_binary -----------------------------------------------------------
-check_abimo_binary <- function(tag = "v3.3.0")
+check_abimo_binary <- function(tag = latest_abimo_version())
 {
   file <- abimo_binary(tag)
 
@@ -11,7 +11,7 @@ check_abimo_binary <- function(tag = "v3.3.0")
 }
 
 # abimo_binary -----------------------------------------------------------------
-abimo_binary <- function(tag = "v3.3.0")
+abimo_binary <- function(tag = latest_abimo_version())
 {
   file.path(extdata_file(), paste0("abimo_", tag, "_win64"), "Abimo.exe")
 }
@@ -19,14 +19,14 @@ abimo_binary <- function(tag = "v3.3.0")
 # install_abimo ----------------------------------------------------------------
 
 #' @importFrom archive archive_extract
-install_abimo <- function(tag = "v3.2.2")
+install_abimo <- function(tag = latest_abimo_version())
 {
   exdir <- dirname(abimo_binary(tag))
 
   kwb.utils::catAndRun(paste("Installing Abimo to", exdir), {
 
     # Download abimo executable and dependencies in zip file
-    #repo = "KWB-R/abimo"; tag = "v3.2.2"
+    #repo = "KWB-R/abimo"; tag = "v3.3.0"
     zip_file <- download_asset(repo = "KWB-R/abimo", tag = tag)
 
     kwb.utils::createDirectory(exdir)
