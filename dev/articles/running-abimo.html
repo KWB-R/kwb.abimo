@@ -87,7 +87,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Installing Abimo to D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64 ... The directory "D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64" was created.</span></span>
-<span><span class="co">#&gt; ok. (1.43s)</span></span>
+<span><span class="co">#&gt; ok. (2.69s)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span></span>
@@ -312,7 +312,7 @@
 <span>  input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>,</span>
 <span>  config <span class="op">=</span> <span class="va">config</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\RtmpWuQH0L/config_20220913-165609.xml ... ok. (0.00s)</span></span>
+<span><span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\Rtmpc1DXgV/config_20220915-132307.xml ... ok. (0.00s)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span></span>
@@ -332,12 +332,12 @@
 <p>Internally, a new <code>config_&lt;date-time-string&gt;.xml</code> file was created in the temporary folder:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "abimo_input.dbf"               "abimo_input_result.dbf"       </span></span>
-<span><span class="co">#&gt;  [3] "abimo_input_result.log"        "abimo_v3.3.0_win64.zip"       </span></span>
-<span><span class="co">#&gt;  [5] "config_20220913-165609.xml"    "filed881739415f"              </span></span>
-<span><span class="co">#&gt;  [7] "filed882acd24b6"               "filed8849535fde"              </span></span>
-<span><span class="co">#&gt;  [9] "filed8869c8321d"               "filed8875c72988"              </span></span>
-<span><span class="co">#&gt; [11] "filed887a82c98"                "rmarkdown-strd882217597f.html"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] "abimo_input.dbf"                "abimo_input_result.dbf"        </span></span>
+<span><span class="co">#&gt;  [3] "abimo_input_result.log"         "abimo_v3.3.0_win64.zip"        </span></span>
+<span><span class="co">#&gt;  [5] "config_20220915-132307.xml"     "file1b4411ba72ac"              </span></span>
+<span><span class="co">#&gt;  [7] "file1b4418b220d"                "file1b441b0371c1"              </span></span>
+<span><span class="co">#&gt;  [9] "file1b445a277f56"               "file1b445f445362"              </span></span>
+<span><span class="co">#&gt; [11] "file1b44798822bc"               "rmarkdown-str1b4456011307.html"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="manually-save-configuration-object-to-xml">Manually save configuration object to XML<a class="anchor" aria-label="anchor" href="#manually-save-configuration-object-to-xml"></a>
