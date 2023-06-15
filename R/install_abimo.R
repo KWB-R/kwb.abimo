@@ -1,5 +1,5 @@
 # check_abimo_binary -----------------------------------------------------------
-check_abimo_binary <- function(tag = "v3.3.0")
+check_abimo_binary <- function(tag = latest_abimo_version())
 {
   file <- abimo_binary(tag)
 
@@ -11,7 +11,7 @@ check_abimo_binary <- function(tag = "v3.3.0")
 }
 
 # abimo_binary -----------------------------------------------------------------
-abimo_binary <- function(tag = "v3.3.0")
+abimo_binary <- function(tag = latest_abimo_version())
 {
   file.path(extdata_file(), paste0("abimo_", tag, "_win64"), "Abimo.exe")
 }
@@ -19,7 +19,7 @@ abimo_binary <- function(tag = "v3.3.0")
 # install_abimo ----------------------------------------------------------------
 
 #' @importFrom archive archive_extract
-install_abimo <- function(tag = "v3.2.2", arch = "win64")
+install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
 {
   if (arch != "win64") {
     stop("Currently, the abimo executable is only available for win64")
