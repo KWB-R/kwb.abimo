@@ -16,8 +16,12 @@
 #' @return data frame, read from dbf file that was created by Abimo.exe
 #' @export
 run_abimo <- function(
-  input_file = NULL, input_data = NULL, output_file = NULL, config_file = NULL,
-  config = NULL, tag = latest_abimo_version()
+  input_file = NULL,
+  input_data = NULL,
+  output_file = NULL,
+  config_file = NULL,
+  config = NULL,
+  tag = latest_abimo_version()
 )
 {
   if (is.null(input_file) && is.null(input_data)) {
@@ -25,24 +29,28 @@ run_abimo <- function(
   }
 
   if (is.null(input_file)) {
+
     check_types(input_data)
     input_file <- file.path(tempdir(), "abimo_input.dbf")
     write.dbf.abimo(input_data, input_file)
   }
 
-  if (! is.null(config)) {
+  if (!is.null(config)) {
+
     stopifnot(inherits(config, "abimo_config"))
-    if (! is.null(config_file)) {
+
+    if (!is.null(config_file)) {
       warning(
         "run_abimo(): 'config_file' is ignored as 'config' object is given!"
       )
     }
+
     timestring <- format(Sys.time(), "%Y%m%d-%H%M%S")
     file_name <- paste0("config_", timestring, ".xml")
     config_file <- config$save(file = file.path(tempdir(), file_name))
   }
 
-  if (! check_abimo_binary(tag)) {
+  if (!check_abimo_binary(tag)) {
     stop("Could not install Abimo!")
   }
 
@@ -62,10 +70,16 @@ run_abimo <- function(
   foreign::read.dbf(output_file)
 }
 
-# latest_abimo_version ---------------------------------------------------------
-latest_abimo_version <- function()
+# check_abimo_binary -----------------------------------------------------------
+check_abimo_binary <- function(tag = latest_abimo_version())
 {
-  "v3.3.0"
+  file <- abimo_binary(tag)
+
+  if (file.exists(file)) {
+    return(TRUE)
+  }
+
+  file.exists(install_abimo(tag))
 }
 
 # full_quoted_path -------------------------------------------------------------
