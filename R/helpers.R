@@ -1,3 +1,7 @@
+# import any function of remotes, just to let R CMD Check not complain...
+#' @importFrom remotes available_packages
+NULL
+
 # abimo_binary -----------------------------------------------------------------
 abimo_binary <- function(tag = latest_abimo_version())
 {
