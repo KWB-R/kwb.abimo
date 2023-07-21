@@ -45,8 +45,8 @@ run_abimo <- function(
       )
     }
 
-    timestring <- format(Sys.time(), "%Y%m%d-%H%M%S")
-    file_name <- paste0("config_", timestring, ".xml")
+    file_name <- format(Sys.time(), "config_%Y%m%d-%H%M%S.xml")
+
     config_file <- config$save(file = file.path(tempdir(), file_name))
   }
 
