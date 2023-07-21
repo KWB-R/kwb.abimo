@@ -31,7 +31,9 @@ run_abimo <- function(
   if (is.null(input_file)) {
 
     check_types(input_data)
+
     input_file <- file.path(tempdir(), "abimo_input.dbf")
+
     write.dbf.abimo(input_data, input_file)
   }
 
@@ -60,7 +62,7 @@ run_abimo <- function(
 
   args <- full_quoted_path(c(input_file, output_file))
 
-  if (! is.null(config_file)) {
+  if (!is.null(config_file)) {
     args <- c(args, paste("--config", full_quoted_path(config_file)))
   }
 
@@ -82,6 +84,14 @@ check_abimo_binary <- function(tag = latest_abimo_version())
   file.exists(install_abimo(tag))
 }
 
+# default_output_file ----------------------------------------------------------
+
+#' @importFrom kwb.utils replaceFileExtension
+default_output_file <- function(input_file)
+{
+  kwb.utils::replaceFileExtension(input_file, "_result.dbf")
+}
+
 # full_quoted_path -------------------------------------------------------------
 full_quoted_path <- function(x)
 {
@@ -95,39 +105,4 @@ full_quoted_path <- function(x)
 
   # Surround paths in double quotes just in case they contain spaces
   paste0('"', x, '"')
-}
-
-# default_output_file ----------------------------------------------------------
-default_output_file <- function(input_file)
-{
-  paste0(kwb.utils::removeExtension(input_file), "_result.dbf")
-}
-
-# run_abimo_command_line -------------------------------------------------------
-
-#' Run Abimo on the Command Line
-#'
-#' @param args vector of arguments to be passed to Abimo
-#' @param tag version tag of Abimo release to be used, see
-#'   \url{https://github.com/KWB-R/abimo/releases}
-#' @return The function returns what Abimo.exe sent to the standard output (as a
-#'   vector of character).
-#' @export
-run_abimo_command_line <- function(args, tag = latest_abimo_version())
-{
-  output <- system2(abimo_binary(tag), args = args, stdout = TRUE)
-
-  output
-}
-
-# abimo_help -------------------------------------------------------------------
-abimo_help <- function()
-{
-  run_abimo_command_line("--help")
-}
-
-# abimo_version ----------------------------------------------------------------
-abimo_version <- function()
-{
-  run_abimo_command_line("--version")
 }

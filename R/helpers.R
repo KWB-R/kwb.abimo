@@ -4,6 +4,20 @@ abimo_binary <- function(tag = latest_abimo_version())
   file.path(extdata_file(), paste0("abimo_", tag, "_win64"), "Abimo.exe")
 }
 
+# abimo_help -------------------------------------------------------------------
+abimo_help <- function()
+{
+  run_abimo_command_line("--help")
+}
+
+# abimo_version ----------------------------------------------------------------
+abimo_version <- function()
+{
+  run_abimo_command_line("--version")
+}
+
+# appendSubToFile --------------------------------------------------------------
+
 #' Add "SUB" field to dbf-File
 #'
 #' Adds "SUB" field to the end of an existing  file, as expected by some
@@ -27,6 +41,23 @@ appendSubToFile <- function (filename)
 latest_abimo_version <- function()
 {
   "v3.3.0"
+}
+
+# run_abimo_command_line -------------------------------------------------------
+
+#' Run Abimo on the Command Line
+#'
+#' @param args vector of arguments to be passed to Abimo
+#' @param tag version tag of Abimo release to be used, see
+#'   \url{https://github.com/KWB-R/abimo/releases}
+#' @return The function returns what Abimo.exe sent to the standard output (as a
+#'   vector of character).
+#' @export
+run_abimo_command_line <- function(args, tag = latest_abimo_version())
+{
+  output <- system2(abimo_binary(tag), args = args, stdout = TRUE)
+
+  output
 }
 
 #' writes data.frame into ABIMO-dbf

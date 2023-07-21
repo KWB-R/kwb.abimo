@@ -1,6 +1,7 @@
 # install_abimo ----------------------------------------------------------------
 
 #' @importFrom archive archive_extract
+#' @importFrom kwb.utils catAndRun createDirectory
 install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
 {
   if (arch != "win64") {
@@ -49,6 +50,7 @@ download_assets <- function(
     asset_info <- asset_info[grepl(pattern, asset_info$name), ]
   }
 
+  # Provide non-exported function github_pat() from package remotes
   github_pat <- utils::getFromNamespace("github_pat", "remotes")
 
   for (i in seq_len(nrow(asset_info))) {
