@@ -41,6 +41,18 @@ appendSubToFile <- function (filename)
   writeBin(as.raw(0x1A), con)
 }
 
+# default_config -----------------------------------------------------------------
+
+#' Default ABIMO config.xml path
+#'
+#' @export
+#' @examples
+#' kwb.abimo::default_config()
+default_config <- function()
+{
+  extdata_file("config.xml")
+}
+
 # latest_abimo_version ---------------------------------------------------------
 latest_abimo_version <- function()
 {
