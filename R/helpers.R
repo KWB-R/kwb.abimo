@@ -53,6 +53,32 @@ default_config <- function()
   extdata_file("config.xml")
 }
 
+# get_bagrov_curves_from_abimo -------------------------------------------------
+
+#' Get Bagrov curves from Abimo software
+#'
+#' Call Abimo with the --write-bagrov-table argument being set and convert the
+#' console output to a data frame
+#'
+#' @return data frame with columns \code{P_over_Ep} (P/Ep), \code{Ea_over_Ep}
+#'   (Ea/Ep), \code{effectivity} (n-value)
+#' @export
+#' @importFrom utils read.table
+get_bagrov_curves_from_abimo <- function()
+{
+  # Let Abimo.exe create a table with data for the Bagrov curves
+  abimo_output <- run_abimo_command_line("--write-bagrov-table")
+
+  # Read the console output as if it was the content of a csv file
+  data <- read.table(text = abimo_output, header = TRUE, sep = ",")
+
+  kwb.utils::renameColumns(data, list(
+    bag = "effectivity",
+    x = "P_over_Ep",
+    y = "Ea_over_Ep"
+  ))
+}
+
 # latest_abimo_version ---------------------------------------------------------
 latest_abimo_version <- function()
 {
