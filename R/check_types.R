@@ -6,7 +6,7 @@ check_types <- function(abimo_data)
   #writeLines(sprintf("%s = \"%s\",", names(types), types))
 
   expected_types <- list(
-    CODE = "integer",
+    CODE = "character",
     BEZIRK = "integer",
     STAGEB = "integer",
     BLOCK = "integer",
