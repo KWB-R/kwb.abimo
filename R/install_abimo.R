@@ -32,13 +32,9 @@ install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
   invisible(exdir)
 }
 
-# import any function of remotes, just to let R CMD Check not complain...
-#' @importFrom remotes available_packages
-NULL
-
 # download_assets -------------------------------------------------------
 
-#' @importFrom utils download.file
+#' @importFrom utils download.file getFromNamespace
 download_assets <- function(
     repo,
     tag,
