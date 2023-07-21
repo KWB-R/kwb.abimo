@@ -1,24 +1,7 @@
-# check_abimo_binary -----------------------------------------------------------
-check_abimo_binary <- function(tag = latest_abimo_version())
-{
-  file <- abimo_binary(tag)
-
-  if (file.exists(file)) {
-    return(TRUE)
-  }
-
-  file.exists(install_abimo(tag))
-}
-
-# abimo_binary -----------------------------------------------------------------
-abimo_binary <- function(tag = latest_abimo_version())
-{
-  file.path(extdata_file(), paste0("abimo_", tag, "_win64"), "Abimo.exe")
-}
-
 # install_abimo ----------------------------------------------------------------
 
 #' @importFrom archive archive_extract
+#' @importFrom kwb.utils catAndRun createDirectory
 install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
 {
   if (arch != "win64") {
@@ -30,7 +13,6 @@ install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
   kwb.utils::catAndRun(paste("Installing Abimo to", exdir), {
 
     # Download abimo executable and dependencies in zip file
-    #repo = "KWB-R/abimo"; tag = "v3.2.2"
     zip_files <- download_assets(
       repo = "KWB-R/abimo",
       tag = tag,
@@ -51,13 +33,9 @@ install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
   invisible(exdir)
 }
 
-# import any function of remotes, just to let R CMD Check not complain...
-#' @importFrom remotes available_packages
-NULL
-
 # download_assets -------------------------------------------------------
 
-#' @importFrom utils download.file
+#' @importFrom utils download.file getFromNamespace
 download_assets <- function(
     repo,
     tag,
@@ -72,6 +50,7 @@ download_assets <- function(
     asset_info <- asset_info[grepl(pattern, asset_info$name), ]
   }
 
+  # Provide non-exported function github_pat() from package remotes
   github_pat <- utils::getFromNamespace("github_pat", "remotes")
 
   for (i in seq_len(nrow(asset_info))) {
@@ -93,26 +72,29 @@ download_assets <- function(
 # get_asset_info ---------------------------------------------------------------
 
 #' @importFrom gh gh
+#' @importFrom kwb.utils asNoFactorDataFrame selectElements
 get_asset_info <- function(repo, tag)
 {
-  url_releases <- kwb.utils::resolve(
-    "https://api.github.com/repos/<repo>/releases",
-    repo = repo
-  )
+  url_releases <- sprintf("https://api.github.com/repos/%s/releases", repo)
 
   release_info <- gh::gh(url_releases)
 
-  tag_names <- sapply(release_info, "[[", "tag_name")
+  tag_names <- sapply(release_info, kwb.utils::selectElements, "tag_name")
 
   match.arg(tag, tag_names)
 
-  assets <- release_info[[which(tag == tag_names)]]$assets
+  assets <- kwb.utils::selectElements(
+    release_info[[which(tag == tag_names)]],
+    "assets"
+  )
 
-  if (! length(assets)) {
-    stop("There are no assets for release ", version)
+  if (!length(assets)) {
+    stop("There are no assets for release ", tag)
   }
 
   do.call(rbind, lapply(assets, function(asset) {
-    kwb.utils::asNoFactorDataFrame(asset[c("name", "url")])
+    kwb.utils::asNoFactorDataFrame(
+      kwb.utils::selectElements(asset, c("name", "url"))
+    )
   }))
 }
