@@ -8,7 +8,7 @@ abimo_binary <- function(tag = latest_abimo_version())
   file.path(
     extdata_file(),
     paste0("abimo_", tag, "_", get_architecture_suffix()),
-    ifelse(on_windows, "Abimo.exe", "Abimo")
+    ifelse(on_windows(), "Abimo.exe", "Abimo")
   )
 }
 
