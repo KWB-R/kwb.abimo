@@ -7,8 +7,12 @@ install_abimo <- function(
     arch = get_architecture_suffix()
 )
 {
-  if (arch != "win64") {
-    stop("Currently, the abimo executable is only available for win64")
+  if (!arch %in% c("win64", "unix64")) {
+    stop(
+      "Currently, the abimo executable is only available for win64 or unix64",
+      call. = FALSE
+
+    )
   }
 
   exdir <- dirname(abimo_binary(tag))
