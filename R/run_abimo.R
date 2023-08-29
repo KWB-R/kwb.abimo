@@ -99,7 +99,7 @@ full_quoted_path <- function(x)
   x <- path.expand(x)
 
   # Convert slashes to backslashes on windows
-  if (Sys.info()["sysname"] == "Windows") {
+  if (on_windows()) {
     x <- kwb.utils::windowsPath(x)
   }
 
