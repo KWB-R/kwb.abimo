@@ -7,9 +7,13 @@ install_abimo <- function(
     arch = get_architecture_suffix()
 )
 {
-  if (!arch %in% c("win64", "unix64")) {
+  expected_architectures <- c("windows", "linux", "macos")
+
+  if (!arch %in% expected_architectures) {
     stop(
-      "Currently, the abimo executable is only available for win64 or unix64",
+      "Currently, the abimo executable is only available for one of these ",
+      "'architectures': ",
+      kwb.utils::stringList(expected_architectures),
       call. = FALSE
 
     )

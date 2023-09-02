@@ -9,44 +9,27 @@ extdata_file <- kwb.utils::createFunctionExtdataFile("kwb.abimo")
 # get_architecture_suffix ------------------------------------------------------
 get_architecture_suffix <- function()
 {
-  if (on_windows() && on_64bit()) {
-      return("win64")
-  }
-
-  if (!on_windows() && on_64bit()) {
-    return("unix64")
-  }
-
-  kwb.utils::printIf(TRUE, .Platform)
-  kwb.utils::printIf(TRUE, R.version)
-
-  stop(
-    "Unexpected platform type and architecture. ",
-    "Expected: one of 'win64', 'unix64'",
-    call. = FALSE
+  suffixes <- list(
+    Linux = "linux",
+    Darwin = "macos",
+    Windows = "windows"
   )
-}
 
-# get_os_architecture ----------------------------------------------------------
-get_os_architecture <- function()
-{
-  kwb.utils::selectElements(R.version, "arch")
+  kwb.utils::selectElements(suffixes, get_os_type())
 }
 
 # get_os_type ------------------------------------------------------------------
 get_os_type <- function()
 {
-  kwb.utils::selectElements(.Platform, "OS.type")
-}
+  os_type <- Sys.info()[["sysname"]]
 
-# on_64bit ---------------------------------------------------------------------
-on_64bit <- function()
-{
-  get_os_architecture() == "x86_64"
+  stopifnot(os_type %in% c("Windows", "Linux", "Darwin"))
+
+  os_type
 }
 
 # on_windows -------------------------------------------------------------------
 on_windows <- function()
 {
-  get_os_type() == "windows"
+  get_os_type() == "Windows"
 }
