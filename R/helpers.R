@@ -132,7 +132,7 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
   if (kwb.utils::isTryError(output)) {
     stop(
       "system2() failed. Files below ", path, ":\n",
-      capture.output(dir(path, recurse = TRUE))
+      capture.output(dir(path, recursive = TRUE))
     )
   }
 
