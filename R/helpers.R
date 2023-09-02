@@ -13,15 +13,15 @@ abimo_binary <- function(tag = latest_abimo_version())
 }
 
 # abimo_help -------------------------------------------------------------------
-abimo_help <- function()
+abimo_help <- function(...)
 {
-  run_abimo_command_line("--help")
+  run_abimo_command_line("--help", ...)
 }
 
 # abimo_version ----------------------------------------------------------------
-abimo_version <- function()
+abimo_version <- function(...)
 {
-  run_abimo_command_line("--version")
+  run_abimo_command_line("--version", ...)
 }
 
 # appendSubToFile --------------------------------------------------------------
