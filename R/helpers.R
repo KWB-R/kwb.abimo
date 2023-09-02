@@ -123,7 +123,7 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
 
   if (on_macos()) {
     command <- "open"
-    args <- c(path, args)
+    args <- c(path, "--args", args)
   } else {
     command <- path
   }
