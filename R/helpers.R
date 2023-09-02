@@ -5,16 +5,18 @@ NULL
 # abimo_binary -----------------------------------------------------------------
 abimo_binary <- function(tag = latest_abimo_version())
 {
-  formats <- list(
-    Windows = "%s.exe",
-    Linux = "%s",
-    Darwin = "%s.app/Contents/MacOS/GNUSparseFile.0/%s"
+  name <- "Abimo"
+
+  executables <- list(
+    Windows = paste0(name, ".exe"),
+    Linux = name,
+    Darwin = paste0(name, ".app/Contents/MacOS/GNUSparseFile.0/", name)
   )
 
   file.path(
     extdata_file(),
     paste0("abimo_", tag, "_", get_architecture_suffix()),
-    sprintf(kwb.utils::selectElements(formats, get_os_type()), "Abimo")
+    kwb.utils::selectElements(executables, get_os_type())
   )
 }
 
