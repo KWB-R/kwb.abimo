@@ -52,9 +52,7 @@ run_abimo <- function(
     config_file <- config$save(file = file.path(tempdir(), file_name))
   }
 
-  if (!check_abimo_binary(tag)) {
-    stop("Could not install Abimo!")
-  }
+  check_abimo_binary(tag)
 
   output_file <- kwb.utils::defaultIfNULL(
     output_file, default_output_file(input_file)
@@ -70,18 +68,6 @@ run_abimo <- function(
   suppressWarnings(run_abimo_command_line(args, tag = tag))
 
   foreign::read.dbf(output_file)
-}
-
-# check_abimo_binary -----------------------------------------------------------
-check_abimo_binary <- function(tag = latest_abimo_version())
-{
-  file <- abimo_binary(tag)
-
-  if (file.exists(file)) {
-    return(TRUE)
-  }
-
-  file.exists(install_abimo(tag))
 }
 
 # default_output_file ----------------------------------------------------------

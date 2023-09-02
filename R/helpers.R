@@ -45,6 +45,22 @@ appendSubToFile <- function (filename)
   writeBin(as.raw(0x1A), con)
 }
 
+# check_abimo_binary -----------------------------------------------------------
+check_abimo_binary <- function(tag = latest_abimo_version())
+{
+  file <- abimo_binary(tag)
+
+  if (!file.exists(file)) {
+    install_abimo(tag)
+  }
+
+  if (!file.exists(file)) {
+    kwb.utils::stopFormatted(
+      "Could not install or find Abimo (no such file: %s)", file
+    )
+  }
+}
+
 # default_config -----------------------------------------------------------------
 
 #' Default ABIMO config.xml path
@@ -101,6 +117,8 @@ latest_abimo_version <- function()
 #' @export
 run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
+  check_abimo_binary(tag)
+
   output <- system2(abimo_binary(tag), args = args, stdout = TRUE)
 
   output
