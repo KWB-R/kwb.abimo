@@ -1,11 +1,15 @@
-# executable_exists ------------------------------------------------------------
-executable_exists <- function(file)
+# append_extension_for_executable ----------------------------------------------
+append_extension_for_executable <- function(x)
 {
-  if (on_macos()) {
-    file <- paste0(file, ".app")
-  }
+  extensions <- list(
+    Windows = ".exe",
+    Linux = "",
+    Darwin = ".app"
+  )
 
-  file.exists(file)
+  extension <- kwb.utils::selectElements(extensions, get_os_type())
+
+  paste0(x, extension)
 }
 
 # extdata_file -----------------------------------------------------------------

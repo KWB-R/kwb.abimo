@@ -8,7 +8,7 @@ abimo_binary <- function(tag = latest_abimo_version())
   file.path(
     extdata_file(),
     paste0("abimo_", tag, "_", get_architecture_suffix()),
-    ifelse(on_windows(), "Abimo.exe", "Abimo")
+    append_extension_for_executable("Abimo")
   )
 }
 
@@ -50,11 +50,11 @@ check_abimo_binary <- function(tag = latest_abimo_version())
 {
   file <- abimo_binary(tag)
 
-  if (!executable_exists(file)) {
+  if (!file.exists(file)) {
     install_abimo(tag)
   }
 
-  if (!executable_exists(file)) {
+  if (!file.exists(file)) {
     kwb.utils::stopFormatted(
       "Could not install or find Abimo (no such file: %s)", file
     )
@@ -119,10 +119,14 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
   check_abimo_binary(tag)
 
-  command <- abimo_binary(tag)
+  path <- abimo_binary(tag)
 
-  if (on_macos()) {
-    command <- paste0("open ", command, ".app")
+  print.data.frame(fs::dir_info(path, recurse = TRUE))
+
+  command <- if (on_macos()) {
+    paste0("open ", path)
+  } else {
+    path
   }
 
   output <- system2(command, args = args, stdout = TRUE)
