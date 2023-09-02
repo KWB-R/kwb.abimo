@@ -130,8 +130,10 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
   output <- try(system2(command, args = args, stdout = TRUE))
 
   if (kwb.utils::isTryError(output)) {
-    print.data.frame(fs::dir_info(path, recurse = TRUE))
-    stop("system2() failed.")
+    stop(
+      "system2() failed. Files below ", path, ":\n",
+      capture.output(print.data.frame(fs::dir_info(path, recurse = TRUE)))
+    )
   }
 
   output
