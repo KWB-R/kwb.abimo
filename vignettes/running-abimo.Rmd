@@ -21,7 +21,7 @@ This vignette aims at demonstrating how to work with the kwb.abimo package.
 
 ## Install Abimo and check the version
 
-```{r basic-run}
+```{r install-abimo}
 kwb.abimo:::abimo_version()
 ```
 
