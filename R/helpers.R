@@ -119,7 +119,13 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
   check_abimo_binary(tag)
 
-  output <- system2(abimo_binary(tag), args = args, stdout = TRUE)
+  command <- abimo_binary(tag)
+
+  if (on_macos()) {
+    command <- paste0("open ", command, ".app")
+  }
+
+  output <- system2(command, args = args, stdout = TRUE)
 
   output
 }
