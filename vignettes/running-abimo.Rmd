@@ -13,7 +13,7 @@ editor_options:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  eval = kwb.abimo:::on_windows()
+  eval = TRUE # kwb.abimo:::on_windows()
 )
 ```
 
