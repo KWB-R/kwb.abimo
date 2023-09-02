@@ -50,11 +50,11 @@ check_abimo_binary <- function(tag = latest_abimo_version())
 {
   file <- abimo_binary(tag)
 
-  if (!file.exists(file)) {
+  if (!executable_exists(file)) {
     install_abimo(tag)
   }
 
-  if (!file.exists(file)) {
+  if (!executable_exists(file)) {
     kwb.utils::stopFormatted(
       "Could not install or find Abimo (no such file: %s)", file
     )

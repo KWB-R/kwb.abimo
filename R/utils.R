@@ -1,3 +1,13 @@
+# executable_exists ------------------------------------------------------------
+executable_exists <- function(file)
+{
+  if (on_macos()) {
+    file <- paste0(file, ".app")
+  }
+
+  file.exists(file)
+}
+
 # extdata_file -----------------------------------------------------------------
 
 #' Get Path to File in This Package
@@ -26,6 +36,18 @@ get_os_type <- function()
   stopifnot(os_type %in% c("Windows", "Linux", "Darwin"))
 
   os_type
+}
+
+# on_linux ---------------------------------------------------------------------
+on_linux <- function()
+{
+  get_os_type() == "Linux"
+}
+
+# on_macos ---------------------------------------------------------------------
+on_macos <- function()
+{
+  get_os_type() == "Darwin"
 }
 
 # on_windows -------------------------------------------------------------------
