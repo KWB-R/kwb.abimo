@@ -1,17 +1,3 @@
-# append_extension_for_executable ----------------------------------------------
-append_extension_for_executable <- function(x)
-{
-  extensions <- list(
-    Windows = ".exe",
-    Linux = "",
-    Darwin = ".app"
-  )
-
-  extension <- kwb.utils::selectElements(extensions, get_os_type())
-
-  paste0(x, extension)
-}
-
 # extdata_file -----------------------------------------------------------------
 
 #' Get Path to File in This Package

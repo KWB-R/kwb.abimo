@@ -5,10 +5,16 @@ NULL
 # abimo_binary -----------------------------------------------------------------
 abimo_binary <- function(tag = latest_abimo_version())
 {
+  formats <- list(
+    Windows = "%s.exe",
+    Linux = "%s",
+    Darwin = "%s.app/Contents/MacOS/GNUSparseFile.0/%s"
+  )
+
   file.path(
     extdata_file(),
     paste0("abimo_", tag, "_", get_architecture_suffix()),
-    append_extension_for_executable("Abimo")
+    sprintf(kwb.utils::selectElements(formats, get_os_type()), "Abimo")
   )
 }
 
@@ -119,14 +125,7 @@ latest_abimo_version <- function()
 #' @export
 run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
-  path <- check_abimo_binary(tag)
-
-  if (on_macos()) {
-    command <- "open"
-    args <- c("-a", path, "--args", args)
-  } else {
-    command <- path
-  }
+  command <- check_abimo_binary(tag)
 
   output <- try(system2(command, args = args, stdout = TRUE))
 
