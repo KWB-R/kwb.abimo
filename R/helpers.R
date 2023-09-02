@@ -59,6 +59,8 @@ check_abimo_binary <- function(tag = latest_abimo_version())
       "Could not install or find Abimo (no such file: %s)", file
     )
   }
+
+  file
 }
 
 # default_config -----------------------------------------------------------------
@@ -117,11 +119,7 @@ latest_abimo_version <- function()
 #' @export
 run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
-  check_abimo_binary(tag)
-
-  path <- abimo_binary(tag)
-
-  print.data.frame(fs::dir_info(path, recurse = TRUE))
+  path <- check_abimo_binary(tag)
 
   command <- if (on_macos()) {
     paste0("open ", path)
@@ -129,7 +127,12 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
     path
   }
 
-  output <- system2(command, args = args, stdout = TRUE)
+  output <- try(system2(command, args = args, stdout = TRUE))
+
+  if (kwb.utils::isTryError(output)) {
+    print.data.frame(fs::dir_info(path, recurse = TRUE))
+    stop("system2() failed.")
+  }
 
   output
 }

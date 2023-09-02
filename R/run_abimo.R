@@ -52,8 +52,6 @@ run_abimo <- function(
     config_file <- config$save(file = file.path(tempdir(), file_name))
   }
 
-  check_abimo_binary(tag)
-
   output_file <- kwb.utils::defaultIfNULL(
     output_file, default_output_file(input_file)
   )
