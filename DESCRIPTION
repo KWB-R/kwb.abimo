@@ -31,7 +31,6 @@ BugReports: https://github.com/KWB-R/kwb.abimo/issues
 Imports: 
     archive,
     foreign,
-    fs,
     gh,
     gridExtra,
     kwb.utils,
