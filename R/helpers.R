@@ -121,10 +121,11 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
   path <- check_abimo_binary(tag)
 
-  command <- if (on_macos()) {
-    paste0("open ", path)
+  if (on_macos()) {
+    command <- "open"
+    args <- c(path, args)
   } else {
-    path
+    command <- path
   }
 
   output <- try(system2(command, args = args, stdout = TRUE))
@@ -132,7 +133,7 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
   if (kwb.utils::isTryError(output)) {
     stop(
       "system2() failed. Files below ", path, ":\n",
-      capture.output(dir(path, recursive = TRUE))
+      paste(dir(path, recursive = TRUE), collapse = "\n")
     )
   }
 
