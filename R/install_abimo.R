@@ -55,9 +55,12 @@ download_assets <- function(
     destdir = tempdir(),
     pattern = NULL,
     accept = "application/octet-stream",
-    extra = "--connect-timeout 60"
+    timeout = getOption("timeout")
 )
 {
+  old_options <- options(timeout = timeout)
+  on.exit(options(old_options))
+
   asset_info <- get_asset_info(repo, tag)
 
   if (!is.null(pattern)) {
@@ -76,8 +79,7 @@ download_assets <- function(
         Authorization = paste("token", github_pat()),
         Accept = accept
       ),
-      mode = "wb",
-      extra = extra
+      mode = "wb"
     )
   }
 
