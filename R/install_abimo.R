@@ -46,7 +46,7 @@ install_abimo <- function(
   invisible(exdir)
 }
 
-# download_assets -------------------------------------------------------
+# download_assets --------------------------------------------------------------
 
 #' @importFrom utils download.file getFromNamespace
 download_assets <- function(
