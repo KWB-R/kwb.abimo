@@ -4,7 +4,8 @@
 #' @importFrom kwb.utils catAndRun createDirectory
 install_abimo <- function(
     tag = latest_abimo_version(),
-    arch = get_architecture_suffix()
+    arch = get_architecture_suffix(),
+    ...
 )
 {
   expected_architectures <- c("windows", "linux", "macos")
@@ -27,7 +28,8 @@ install_abimo <- function(
     zip_files <- download_assets(
       repo = "KWB-R/abimo",
       tag = tag,
-      pattern = sprintf("abimo_%s_%s\\.", tag, arch)
+      pattern = sprintf("abimo_%s_%s\\.", tag, arch),
+      ...
     )
 
     stopifnot(length(zip_files) == 1L)
