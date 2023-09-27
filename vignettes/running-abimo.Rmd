@@ -10,17 +10,32 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
-is_windows <- .Platform$OS.type == "windows"
-
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  eval = is_windows
+  eval = TRUE # kwb.abimo:::on_windows()
 )
-is_windows <- .Platform$OS.type == "windows"
 ```
 
 This vignette aims at demonstrating how to work with the kwb.abimo package.
+
+## Install Abimo and check the version
+
+```{r}
+tag <- kwb.abimo:::latest_abimo_version()
+```
+
+```{r}
+command <- kwb.abimo:::check_abimo_binary(tag)
+```
+
+```{r}
+output <- try(system2(command, args = "--version", stdout = TRUE))
+```
+
+```{r install-abimo}
+kwb.abimo:::abimo_version()
+```
 
 ## Basic model run
 

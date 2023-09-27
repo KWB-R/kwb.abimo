@@ -5,19 +5,31 @@ NULL
 # abimo_binary -----------------------------------------------------------------
 abimo_binary <- function(tag = latest_abimo_version())
 {
-  file.path(extdata_file(), paste0("abimo_", tag, "_win64"), "Abimo.exe")
+  name <- "Abimo"
+
+  executables <- list(
+    Windows = paste0(name, ".exe"),
+    Linux = name,
+    Darwin = paste0(name, ".app/Contents/MacOS/GNUSparseFile.0/", name)
+  )
+
+  file.path(
+    extdata_file(),
+    paste0("abimo_", tag, "_", get_architecture_suffix()),
+    kwb.utils::selectElements(executables, get_os_type())
+  )
 }
 
 # abimo_help -------------------------------------------------------------------
-abimo_help <- function()
+abimo_help <- function(...)
 {
-  run_abimo_command_line("--help")
+  run_abimo_command_line("--help", ...)
 }
 
 # abimo_version ----------------------------------------------------------------
-abimo_version <- function()
+abimo_version <- function(...)
 {
-  run_abimo_command_line("--version")
+  run_abimo_command_line("--version", ...)
 }
 
 # appendSubToFile --------------------------------------------------------------
@@ -39,6 +51,24 @@ appendSubToFile <- function (filename)
   on.exit(close(con))
 
   writeBin(as.raw(0x1A), con)
+}
+
+# check_abimo_binary -----------------------------------------------------------
+check_abimo_binary <- function(tag = latest_abimo_version())
+{
+  file <- abimo_binary(tag)
+
+  if (!file.exists(file)) {
+    install_abimo(tag)
+  }
+
+  if (!file.exists(file)) {
+    kwb.utils::stopFormatted(
+      "Could not install or find Abimo (no such file: %s)", file
+    )
+  }
+
+  file
 }
 
 # default_config -----------------------------------------------------------------
@@ -97,7 +127,16 @@ latest_abimo_version <- function()
 #' @export
 run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
-  output <- system2(abimo_binary(tag), args = args, stdout = TRUE)
+  command <- check_abimo_binary(tag)
+
+  output <- try(system2(command, args = args, stdout = TRUE))
+
+  if (kwb.utils::isTryError(output)) {
+    stop(
+      "system2() failed. Files below ", dirname(command), ":\n",
+      paste(dir(path, recursive = TRUE), collapse = "\n")
+    )
+  }
 
   output
 }

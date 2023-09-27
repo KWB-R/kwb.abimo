@@ -2,10 +2,22 @@
 
 #' @importFrom archive archive_extract
 #' @importFrom kwb.utils catAndRun createDirectory
-install_abimo <- function(tag = latest_abimo_version(), arch = "win64", ...)
+install_abimo <- function(
+    tag = latest_abimo_version(),
+    arch = get_architecture_suffix(),
+    ...
+)
 {
-  if (arch != "win64") {
-    stop("Currently, the abimo executable is only available for win64")
+  expected_architectures <- c("windows", "linux", "macos")
+
+  if (!arch %in% expected_architectures) {
+    stop(
+      "Currently, the abimo executable is only available for one of these ",
+      "'architectures': ",
+      kwb.utils::stringList(expected_architectures),
+      call. = FALSE
+
+    )
   }
 
   exdir <- dirname(abimo_binary(tag))
