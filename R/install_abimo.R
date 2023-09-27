@@ -41,7 +41,8 @@ download_assets <- function(
     tag,
     destdir = tempdir(),
     pattern = NULL,
-    accept = "application/octet-stream"
+    accept = "application/octet-stream",
+    extra = "--connect-timeout 60"
 )
 {
   asset_info <- get_asset_info(repo, tag)
@@ -62,7 +63,8 @@ download_assets <- function(
         Authorization = paste("token", github_pat()),
         Accept = accept
       ),
-      mode = "wb"
+      mode = "wb",
+      extra = extra
     )
   }
 
