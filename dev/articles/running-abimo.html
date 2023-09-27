@@ -84,12 +84,25 @@
 <p>This vignette aims at demonstrating how to work with the kwb.abimo
 package.</p>
 <div class="section level2">
-<h2 id="basic-model-run">Basic model run<a class="anchor" aria-label="anchor" href="#basic-model-run"></a>
+<h2 id="install-abimo-and-check-the-version">Install Abimo and check the version<a class="anchor" aria-label="anchor" href="#install-abimo-and-check-the-version"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tag</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">:::</span><span class="fu">latest_abimo_version</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">command</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">:::</span><span class="fu">check_abimo_binary</span><span class="op">(</span><span class="va">tag</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Installing Abimo to D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_windows ... The directory "D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_windows" was created.</span></span>
+<span><span class="co">#&gt; ok. (1.19 secs)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system2.html" class="external-link">system2</a></span><span class="op">(</span><span class="va">command</span>, args <span class="op">=</span> <span class="st">"--version"</span>, stdout <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kwb.abimo</span><span class="fu">:::</span><span class="fu">abimo_version</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Abimo 3.3.0 (cleaned by KWB)"</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="basic-model-run">Basic model run<a class="anchor" aria-label="anchor" href="#basic-model-run"></a>
+</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Installing Abimo to D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64 ... The directory "D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_win64" was created.</span></span>
-<span><span class="co">#&gt; ok. (1.87 secs)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span></span>
@@ -98,19 +111,19 @@ package.</p>
 <span><span class="co">#&gt; 3 0700221391000100 422.356 261.911 160.445 502.827 311.813 191.014   37544</span></span>
 <span><span class="co">#&gt; 4 0700221401000000 389.757 220.770 168.986 631.977 357.971 274.006   51134</span></span>
 <span><span class="co">#&gt; 5 0700221581000200 361.886 211.796 150.089 212.424 124.323  88.102   18511</span></span>
-<span><span class="co">#&gt; 6 0700221561000000 471.360 360.978 110.381 420.133 321.747  98.385   28109</span></span>
+<span><span class="co">#&gt; 6 0700221561000000 471.358 360.977 110.381 420.131 321.747  98.385   28109</span></span>
 <span><span class="co">#&gt;   VERDUNSTUN</span></span>
 <span><span class="co">#&gt; 1    356.307</span></span>
 <span><span class="co">#&gt; 2    174.499</span></span>
 <span><span class="co">#&gt; 3    164.064</span></span>
 <span><span class="co">#&gt; 4    196.663</span></span>
 <span><span class="co">#&gt; 5    224.535</span></span>
-<span><span class="co">#&gt; 6    118.330</span></span></code></pre></div>
+<span><span class="co">#&gt; 6    118.332</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-and-modify-input-data">Load and modify input data<a class="anchor" aria-label="anchor" href="#load-and-modify-input-data"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">input_data</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span></span>
 <span></span>
 <span><span class="co"># Have a look at the column types. IMPORTANT: Modifications must not change the</span></span>
@@ -182,30 +195,30 @@ package.</p>
 <div class="section level2">
 <h2 id="run-abimo-with-the-modified-data">Run Abimo with the modified data<a class="anchor" aria-label="anchor" href="#run-abimo-with-the-modified-data"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span>input_data <span class="op">=</span> <span class="va">input_data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span></span>
 <span><span class="co">#&gt; 1 1000536281000000 315.270   0.000 315.270 636.299   0.000 636.299   63648</span></span>
-<span><span class="co">#&gt; 2 0700221581000100 434.707 262.340 172.367 483.896 292.025 191.871   35104</span></span>
+<span><span class="co">#&gt; 2 0700221581000100 434.706 262.339 172.366 483.895 292.024 191.870   35104</span></span>
 <span><span class="co">#&gt; 3 0700221391000100 446.691 275.414 171.277 531.799 327.889 203.910   37544</span></span>
 <span><span class="co">#&gt; 4 0700221401000000 412.824 232.126 180.698 669.380 376.385 292.996   51134</span></span>
 <span><span class="co">#&gt; 5 0700221581000200 384.020 222.665 161.355 225.417 130.703  94.714   18511</span></span>
-<span><span class="co">#&gt; 6 0700221561000000 496.795 380.011 116.783 442.803 338.712 104.091   28109</span></span>
+<span><span class="co">#&gt; 6 0700221561000000 496.796 380.013 116.784 442.805 338.713 104.092   28109</span></span>
 <span><span class="co">#&gt;   VERDUNSTUN</span></span>
 <span><span class="co">#&gt; 1    362.710</span></span>
-<span><span class="co">#&gt; 2    178.963</span></span>
+<span><span class="co">#&gt; 2    178.964</span></span>
 <span><span class="co">#&gt; 3    168.069</span></span>
 <span><span class="co">#&gt; 4    201.936</span></span>
 <span><span class="co">#&gt; 5    230.740</span></span>
-<span><span class="co">#&gt; 6    122.325</span></span></code></pre></div>
+<span><span class="co">#&gt; 6    122.324</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-and-modify-a-configuration-config-xml-updated-for-v0-2-0">Load and modify a configuration (config.xml), updated for
 v0.2.0!<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configuration-config-xml-updated-for-v0-2-0"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create a configuration object (from default config.xml stored in this package)</span></span>
 <span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">:::</span><span class="fu">read_config</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -310,50 +323,52 @@ v0.2.0!<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configurat
 <div class="section level2">
 <h2 id="run-abimo-with-the-modified-configuration">Run Abimo with the modified configuration<a class="anchor" aria-label="anchor" href="#run-abimo-with-the-modified-configuration"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="fu"><a href="../reference/run_abimo.html">run_abimo</a></span><span class="op">(</span></span>
 <span>  input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>,</span>
 <span>  config <span class="op">=</span> <span class="va">config</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\RtmpEPSSUJ/config_20230927-085607.xml ... ok. (0.00 secs)</span></span>
+<span><span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\RtmpoTjImf/config_20230927-120538.xml ... ok. (0.00 secs)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span></span>
 <span><span class="co">#&gt; 1 1000536281000000 293.946   0.000 293.946 593.261   0.000 593.261   63648</span></span>
-<span><span class="co">#&gt; 2 0700221581000100 327.276 135.355 191.921 364.308 150.671 213.637   35104</span></span>
+<span><span class="co">#&gt; 2 0700221581000100 327.275 135.355 191.920 364.308 150.671 213.637   35104</span></span>
 <span><span class="co">#&gt; 3 0700221391000100 338.859 145.362 193.497 403.421 173.058 230.364   37544</span></span>
 <span><span class="co">#&gt; 4 0700221401000000 315.900 118.520 197.380 512.222 192.177 320.045   51134</span></span>
 <span><span class="co">#&gt; 5 0700221581000200 288.330 105.502 182.829 169.248  61.929 107.319   18511</span></span>
 <span><span class="co">#&gt; 6 0700221561000000 315.560 177.102 138.458 281.265 157.855 123.411   28109</span></span>
 <span><span class="co">#&gt;   VERDUNSTUN</span></span>
 <span><span class="co">#&gt; 1    352.425</span></span>
-<span><span class="co">#&gt; 2    258.054</span></span>
+<span><span class="co">#&gt; 2    258.055</span></span>
 <span><span class="co">#&gt; 3    247.561</span></span>
 <span><span class="co">#&gt; 4    270.520</span></span>
 <span><span class="co">#&gt; 5    298.090</span></span>
 <span><span class="co">#&gt; 6    274.130</span></span></code></pre></div>
 <p>Internally, a new <code>config_&lt;date-time-string&gt;.xml</code>
 file was created in the temporary folder:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "abimo_input.dbf"               "abimo_input_result.dbf"       </span></span>
-<span><span class="co">#&gt;  [3] "abimo_input_result.log"        "abimo_v3.3.0_win64.zip"       </span></span>
-<span><span class="co">#&gt;  [5] "config_20230927-085607.xml"    "file125c3ce7220b"             </span></span>
-<span><span class="co">#&gt;  [7] "file125c40955d85"              "file125c634c2666"             </span></span>
-<span><span class="co">#&gt;  [9] "file125c6688221b"              "file125c742a3ee9"             </span></span>
-<span><span class="co">#&gt; [11] "file125c7a01331e"              "rmarkdown-str125cf0216cf.html"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [3] "abimo_input_result.log"        "abimo_v3.3.0_windows.zip"     </span></span>
+<span><span class="co">#&gt;  [5] "config_20230927-120538.xml"    "file4681a1b7c49"              </span></span>
+<span><span class="co">#&gt;  [7] "file4681a632b9"                "file468340871a"               </span></span>
+<span><span class="co">#&gt;  [9] "file4683877582a"               "file468482120"                </span></span>
+<span><span class="co">#&gt; [11] "file46851ff3ca1"               "file46860ac25dc"              </span></span>
+<span><span class="co">#&gt; [13] "file46862b655d0"               "file46875e064e7"              </span></span>
+<span><span class="co">#&gt; [15] "file46877983a78"               "rmarkdown-str4681cbc725e.html"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="manually-save-configuration-object-to-xml">Manually save configuration object to XML<a class="anchor" aria-label="anchor" href="#manually-save-configuration-object-to-xml"></a>
 </h2>
 <p>You may create your own config files from config objects using
 <code><a href="https://rdrr.io/r/base/save.html" class="external-link">save()</a></code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">new_xml_file</span> <span class="op">&lt;-</span> <span class="va">config</span><span class="op">$</span><span class="fu">save</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"config_tmp.xml"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Writing D:/a/_temp/Library/kwb.abimo/extdata/config_tmp.xml ... ok. (0.00 secs)</span></span></code></pre></div>
 <p>If something goes wrong, you may compare the created xml file with
 the original file, e.g. using TortoiseSVN-&gt;Diff…</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Open the folder containing the xml file</span></span>
 <span><span class="fu">kwb.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kwb.utils/man/hsOpenWindowsExplorer.html" class="external-link">hsOpenWindowsExplorer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">dirname</a></span><span class="op">(</span><span class="va">new_xml_file</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
