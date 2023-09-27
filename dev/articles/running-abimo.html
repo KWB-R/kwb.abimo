@@ -91,7 +91,7 @@ package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">command</span> <span class="op">&lt;-</span> <span class="fu">kwb.abimo</span><span class="fu">:::</span><span class="fu">check_abimo_binary</span><span class="op">(</span><span class="va">tag</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Installing Abimo to D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_windows ... The directory "D:/a/_temp/Library/kwb.abimo/extdata/abimo_v3.3.0_windows" was created.</span></span>
-<span><span class="co">#&gt; ok. (1.19 secs)</span></span></code></pre></div>
+<span><span class="co">#&gt; ok. (1.20 secs)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system2.html" class="external-link">system2</a></span><span class="op">(</span><span class="va">command</span>, args <span class="op">=</span> <span class="st">"--version"</span>, stdout <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -328,7 +328,7 @@ v0.2.0!<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configurat
 <span>  input_data <span class="op">=</span> <span class="fu">kwb.abimo</span><span class="fu">::</span><span class="va"><a href="../reference/abimo_input_2019.html">abimo_input_2019</a></span>,</span>
 <span>  config <span class="op">=</span> <span class="va">config</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\RtmpoTjImf/config_20230927-120538.xml ... ok. (0.00 secs)</span></span>
+<span><span class="co">#&gt; Writing C:\Users\RUNNER~1\AppData\Local\Temp\RtmpaAyzHl/config_20230927-121129.xml ... ok. (0.00 secs)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               CODE       R     ROW      RI    RVOL  ROWVOL   RIVOL FLAECHE</span></span>
@@ -349,14 +349,14 @@ v0.2.0!<a class="anchor" aria-label="anchor" href="#load-and-modify-a-configurat
 file was created in the temporary folder:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "abimo_input.dbf"               "abimo_input_result.dbf"       </span></span>
-<span><span class="co">#&gt;  [3] "abimo_input_result.log"        "abimo_v3.3.0_windows.zip"     </span></span>
-<span><span class="co">#&gt;  [5] "config_20230927-120538.xml"    "file4681a1b7c49"              </span></span>
-<span><span class="co">#&gt;  [7] "file4681a632b9"                "file468340871a"               </span></span>
-<span><span class="co">#&gt;  [9] "file4683877582a"               "file468482120"                </span></span>
-<span><span class="co">#&gt; [11] "file46851ff3ca1"               "file46860ac25dc"              </span></span>
-<span><span class="co">#&gt; [13] "file46862b655d0"               "file46875e064e7"              </span></span>
-<span><span class="co">#&gt; [15] "file46877983a78"               "rmarkdown-str4681cbc725e.html"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] "abimo_input.dbf"                "abimo_input_result.dbf"        </span></span>
+<span><span class="co">#&gt;  [3] "abimo_input_result.log"         "abimo_v3.3.0_windows.zip"      </span></span>
+<span><span class="co">#&gt;  [5] "config_20230927-121129.xml"     "file16d412265038"              </span></span>
+<span><span class="co">#&gt;  [7] "file16d41a921e5b"               "file16d4216b375d"              </span></span>
+<span><span class="co">#&gt;  [9] "file16d437f824c2"               "file16d43c204820"              </span></span>
+<span><span class="co">#&gt; [11] "file16d4453b7bb0"               "file16d44f043f4a"              </span></span>
+<span><span class="co">#&gt; [13] "file16d4639b2af"                "file16d47c157588"              </span></span>
+<span><span class="co">#&gt; [15] "file16d48c3099"                 "rmarkdown-str16d455e620bc.html"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="manually-save-configuration-object-to-xml">Manually save configuration object to XML<a class="anchor" aria-label="anchor" href="#manually-save-configuration-object-to-xml"></a>
