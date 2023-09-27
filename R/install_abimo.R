@@ -2,7 +2,7 @@
 
 #' @importFrom archive archive_extract
 #' @importFrom kwb.utils catAndRun createDirectory
-install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
+install_abimo <- function(tag = latest_abimo_version(), arch = "win64", ...)
 {
   if (arch != "win64") {
     stop("Currently, the abimo executable is only available for win64")
@@ -16,7 +16,8 @@ install_abimo <- function(tag = latest_abimo_version(), arch = "win64")
     zip_files <- download_assets(
       repo = "KWB-R/abimo",
       tag = tag,
-      pattern = sprintf("abimo_%s_%s\\.", tag, arch)
+      pattern = sprintf("abimo_%s_%s\\.", tag, arch),
+      ...
     )
 
     stopifnot(length(zip_files) == 1L)
