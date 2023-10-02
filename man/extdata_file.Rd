@@ -4,13 +4,16 @@
 \alias{extdata_file}
 \title{Get Path to File in This Package}
 \usage{
-extdata_file(..., must_exist = TRUE)
+extdata_file(..., must_exist = TRUE, dbg = FALSE)
 }
 \arguments{
 \item{...}{parts of the file path to be passed to \code{\link{system.file}}}
 
 \item{must_exist}{if \code{TRUE} (the default) and the specified file does 
 not exist, the program stops with an error message}
+
+\item{dbg}{if \code{TRUE} (the default is \code{FALSE}) debug messages are 
+shown}
 }
 \description{
 Get Path to File in This Package
