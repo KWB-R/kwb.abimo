@@ -24,9 +24,8 @@ replace_value(
 returns string with modified parameter = value
 }
 \description{
-searches for string for parameter=pattern_value
-pattern and replaces with parameter="new_value" for all found
-entries
+searches string for parameter=<pattern_value> and replaces with
+parameter=<new_value> for all found entries
 }
 \examples{
 ### Simple string
