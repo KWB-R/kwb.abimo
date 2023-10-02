@@ -129,6 +129,7 @@ latest_abimo_version <- function()
 #'   \url{https://github.com/KWB-R/abimo/releases}
 #' @return The function returns what Abimo.exe sent to the standard output (as a
 #'   vector of character).
+#' @importFrom kwb.utils isTryError printIf
 #' @export
 run_abimo_command_line <- function(args, tag = latest_abimo_version())
 {
@@ -137,8 +138,15 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
   output <- try(system2(command, args = args, stdout = TRUE))
 
   if (kwb.utils::isTryError(output)) {
+
+    kwb.utils::printIf(TRUE, command)
+    cat("\n")
+    kwb.utils::printIf(TRUE, args)
+
+    path <- dirname(command)
+
     stop(
-      "system2() failed. Files below ", dirname(command), ":\n",
+      "system2() failed (see above for arguments). Files below ", path, ":\n",
       paste(dir(path, recursive = TRUE), collapse = "\n")
     )
   }

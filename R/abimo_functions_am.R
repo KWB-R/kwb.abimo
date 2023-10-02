@@ -263,15 +263,15 @@ abimo_xml_BER <- function (
 }
 
 #' Helper function: replace value
-#' @description searches for string for parameter=pattern_value
-#' pattern and replaces with parameter="new_value" for all found
-#' entries
+#'
+#' @description searches string for parameter=<pattern_value> and replaces with
+#' parameter=<new_value> for all found entries
+#'
 #' @param string string with ABIMO config
 #' @param new_value new parameter value
 #' @param parameter parameter name to search for (default: "etp")
 #' @param pattern_value pattern of value field (default: '\"\[0-9\]+?\\.?\[0-9\]+?\"')
 #' @return returns string with modified parameter = value
-#' @importFrom stringr str_replace_all
 #' @export
 #' @examples
 #' ### Simple string
@@ -281,15 +281,18 @@ abimo_xml_BER <- function (
 #' ### Default ABIMO config
 #' config <- readLines(kwb.abimo::default_config())
 #' replace_value(config, new_value = 100, parameter = "etp")
-replace_value <- function(string,
-                          new_value,
-                          parameter = "etp",
-                          pattern_value = "\"[0-9]+?\\.?[0-9]+?\"") {
-
-  pattern <- sprintf("%s=%s", parameter, pattern_value)
-  replacement <- sprintf("%s=\"%s\"", parameter, new_value)
-
-  stringr::str_replace_all(string, pattern, replacement)
+replace_value <- function(
+    string,
+    new_value,
+    parameter = "etp",
+    pattern_value = "\"[0-9]+?\\.?[0-9]+?\""
+)
+{
+  gsub(
+    pattern = sprintf("%s=%s", parameter, pattern_value),
+    replacement = sprintf("%s=\"%s\"", parameter, new_value),
+    x = string
+  )
 }
 
 #' change potential evaporation in Abimo config.xml
