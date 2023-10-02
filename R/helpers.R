@@ -135,6 +135,7 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
   if (kwb.utils::isTryError(output)) {
 
     kwb.utils::printIf(TRUE, command)
+    cat("\n")
     kwb.utils::printIf(TRUE, args)
 
     path <- dirname(command)
