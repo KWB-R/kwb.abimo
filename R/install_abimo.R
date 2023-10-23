@@ -68,17 +68,20 @@ download_assets <- function(
   }
 
   # Provide non-exported function github_pat() from package remotes
-  github_pat <- utils::getFromNamespace("github_pat", "remotes")
+  token <- utils::getFromNamespace("github_pat", "remotes")()
+
+  # Compose HTTP header (with or without token)
+  headers <- c(
+    if (!is.null(token)) c(Authorization = paste("token", token)),
+    Accept = accept
+  )
 
   for (i in seq_len(nrow(asset_info))) {
 
     utils::download.file(
       url = asset_info$url[i],
       destfile = file.path(destdir, asset_info$name[i]),
-      headers = c(
-        Authorization = paste("token", github_pat()),
-        Accept = accept
-      ),
+      headers = headers,
       mode = "wb"
     )
   }
