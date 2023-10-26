@@ -75,47 +75,6 @@ abimo_comb_in_out <- function (
 
 }
 
-#' writes data.frame into ABIMO-dbf
-#'
-#' Saves an existing data.frame into dBase-format
-#' and adds "SUB" field to the end of the file
-#' as required by ABIMO
-#'
-#' @param df_name name of data.frame
-#' @param new_dbf path of new ABIMO-input file to be written (.dbf)
-#'
-#' @return dbf file that can be processed by ABIMO
-#' @importFrom foreign write.dbf
-#' @export
-write.dbf.abimo <- function (
-  df_name,
-  new_dbf
-)
-{
-  foreign::write.dbf(df_name, new_dbf)
-  appendSubToFile(new_dbf)
-}
-
-
-#' Add "SUB" field to dbf-File
-#'
-#' Adds "SUB" field to the end of an existing  file, as expected by some
-#' older applications (such as input-dbf-file for ABIMO)
-#' function by grandmaster HAUKESON
-#'
-#' @param filename Path of file name of data.frame
-#'
-#' @return dbf file with sub field
-#' @export
-appendSubToFile <- function (
-  filename
-)
-{
-  con <- file(filename, "ab")
-  on.exit(close(con))
-  writeBin(as.raw(0x1A), con)
-}
-
 #' add ISU5 ID to dbf file from geoportal
 #'
 #' the ID is an unambiguous identifier
@@ -304,15 +263,15 @@ abimo_xml_BER <- function (
 }
 
 #' Helper function: replace value
-#' @description searches for string for parameter=pattern_value
-#' pattern and replaces with parameter="new_value" for all found
-#' entries
+#'
+#' @description searches string for parameter=<pattern_value> and replaces with
+#' parameter=<new_value> for all found entries
+#'
 #' @param string string with ABIMO config
 #' @param new_value new parameter value
 #' @param parameter parameter name to search for (default: "etp")
 #' @param pattern_value pattern of value field (default: '\"\[0-9\]+?\\.?\[0-9\]+?\"')
 #' @return returns string with modified parameter = value
-#' @importFrom stringr str_replace_all
 #' @export
 #' @examples
 #' ### Simple string
@@ -322,15 +281,18 @@ abimo_xml_BER <- function (
 #' ### Default ABIMO config
 #' config <- readLines(kwb.abimo::default_config())
 #' replace_value(config, new_value = 100, parameter = "etp")
-replace_value <- function(string,
-                          new_value,
-                          parameter = "etp",
-                          pattern_value = "\"[0-9]+?\\.?[0-9]+?\"") {
-
-  pattern <- sprintf("%s=%s", parameter, pattern_value)
-  replacement <- sprintf("%s=\"%s\"", parameter, new_value)
-
-  stringr::str_replace_all(string, pattern, replacement)
+replace_value <- function(
+    string,
+    new_value,
+    parameter = "etp",
+    pattern_value = "\"[0-9]+?\\.?[0-9]+?\""
+)
+{
+  gsub(
+    pattern = sprintf("%s=%s", parameter, pattern_value),
+    replacement = sprintf("%s=\"%s\"", parameter, new_value),
+    x = string
+  )
 }
 
 #' change potential evaporation in Abimo config.xml
