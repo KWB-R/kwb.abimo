@@ -58,6 +58,9 @@
     <loc>/reference/appendSubToFile.html</loc>
   </url>
   <url>
+    <loc>/reference/calculate_bagrov_curve.html</loc>
+  </url>
+  <url>
     <loc>/reference/create_configurator.html</loc>
   </url>
   <url>
@@ -67,10 +70,19 @@
     <loc>/reference/extdata_file.html</loc>
   </url>
   <url>
+    <loc>/reference/get_bagrov_curves_from_abimo.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_xpaths.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/install_abimo.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_abimo_intermediate_results_from_log.html</loc>
   </url>
   <url>
     <loc>/reference/replace_value.html</loc>
