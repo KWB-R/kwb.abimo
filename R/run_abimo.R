@@ -3,7 +3,7 @@
 #' Run Abimo with Input Data or Input File
 #'
 #' @param input_file path to input dbf file
-#' @param input_data data frame from which a temporaryinput file is to be
+#' @param input_data data frame from which a temporary input file is to be
 #'   generated
 #' @param output_file path to output file. By default the output file has the
 #'   same name as the input file with "_result" appended
@@ -13,7 +13,8 @@
 #'   ignored.
 #' @param tag version tag of Abimo release to be used, see
 #'   \url{https://github.com/KWB-R/abimo/releases}.
-#' @return data frame, read from dbf file that was created by Abimo.exe
+#' @return data frame, read from dbf file that was created by Abimo.exe.
+#'   Intermediate results are returned in the attribute "intermediates"
 #' @export
 run_abimo <- function(
   input_file = NULL,
@@ -65,7 +66,18 @@ run_abimo <- function(
   # TODO: Let Abimo.exe return non-failure exit codes!
   suppressWarnings(run_abimo_command_line(args, tag = tag))
 
-  foreign::read.dbf(output_file)
+  result <- foreign::read.dbf(output_file)
+
+  # Read intermediate results from the log file
+  intermediates <- catAndRun(
+    "Reading intermediate results from ABIMO log file",
+    read_abimo_intermediate_results_from_log(
+      file = kwb.utils::replaceFileExtension(output_file, ".log")
+    )
+  )
+
+  # Return the intermediate results as an attribute
+  structure(result, intermediates = intermediates)
 }
 
 # default_output_file ----------------------------------------------------------
