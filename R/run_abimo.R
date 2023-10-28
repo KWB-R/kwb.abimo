@@ -13,8 +13,11 @@
 #'   ignored.
 #' @param tag version tag of Abimo release to be used, see
 #'   \url{https://github.com/KWB-R/abimo/releases}.
+#' @param read_intermediates if \code{TRUE} the values of intermediate variables
+#'   are read from the log file (if applicable). The default is \code{FALSE}.
 #' @return data frame, read from dbf file that was created by Abimo.exe.
-#'   Intermediate results are returned in the attribute "intermediates"
+#'   If \code{read_intermediates} is \code{TRUE}, intermediate results are
+#'   returned in the attribute "intermediates"
 #' @export
 run_abimo <- function(
   input_file = NULL,
@@ -22,7 +25,8 @@ run_abimo <- function(
   output_file = NULL,
   config_file = NULL,
   config = NULL,
-  tag = latest_abimo_version()
+  tag = latest_abimo_version(),
+  read_intermediates = FALSE
 )
 {
   if (is.null(input_file) && is.null(input_data)) {
@@ -69,12 +73,14 @@ run_abimo <- function(
   result <- foreign::read.dbf(output_file)
 
   # Read intermediate results from the log file
-  intermediates <- catAndRun(
-    "Reading intermediate results from ABIMO log file",
-    read_abimo_intermediate_results_from_log(
-      file = kwb.utils::replaceFileExtension(output_file, ".log")
+  intermediates <- if (read_intermediates) {
+    catAndRun(
+      "Reading intermediate results from ABIMO log file",
+      read_abimo_intermediate_results_from_log(
+        file = kwb.utils::replaceFileExtension(output_file, ".log")
+      )
     )
-  )
+  } # else NULL
 
   # Return the intermediate results as an attribute
   structure(result, intermediates = intermediates)

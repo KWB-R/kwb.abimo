@@ -10,13 +10,14 @@ run_abimo(
   output_file = NULL,
   config_file = NULL,
   config = NULL,
-  tag = latest_abimo_version()
+  tag = latest_abimo_version(),
+  read_intermediates = FALSE
 )
 }
 \arguments{
 \item{input_file}{path to input dbf file}
 
-\item{input_data}{data frame from which a temporaryinput file is to be
+\item{input_data}{data frame from which a temporary input file is to be
 generated}
 
 \item{output_file}{path to output file. By default the output file has the
@@ -30,9 +31,14 @@ ignored.}
 
 \item{tag}{version tag of Abimo release to be used, see
 \url{https://github.com/KWB-R/abimo/releases}.}
+
+\item{read_intermediates}{if \code{TRUE} the values of intermediate variables
+are read from the log file (if applicable). The default is \code{FALSE}.}
 }
 \value{
-data frame, read from dbf file that was created by Abimo.exe
+data frame, read from dbf file that was created by Abimo.exe.
+If \code{read_intermediates} is \code{TRUE}, intermediate results are
+returned in the attribute "intermediates"
 }
 \description{
 Run Abimo with Input Data or Input File
