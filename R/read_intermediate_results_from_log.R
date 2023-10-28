@@ -1,9 +1,9 @@
-# read_abimo_intermediate_results_from_log -------------------------------------
+# read_intermediate_results_from_log -------------------------------------------
 
 #' Read Intermediate Results from Log File
 #'
 #' @param file path to log file
-read_abimo_intermediate_results_from_log <- function(
+read_intermediate_results_from_log <- function(
     file = file.path(tempdir(), "abimo_input_result.log")
 )
 {

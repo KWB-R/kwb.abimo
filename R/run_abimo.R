@@ -76,7 +76,7 @@ run_abimo <- function(
   intermediates <- if (read_intermediates) {
     catAndRun(
       "Reading intermediate results from ABIMO log file",
-      read_abimo_intermediate_results_from_log(
+      read_intermediate_results_from_log(
         file = kwb.utils::replaceFileExtension(output_file, ".log")
       )
     )
