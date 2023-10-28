@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">kwb.abimo</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.2.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,8 @@
 <span>  output_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  config_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  config <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tag <span class="op">=</span> <span class="fu">latest_abimo_version</span><span class="op">(</span><span class="op">)</span></span>
+<span>  tag <span class="op">=</span> <span class="fu">latest_abimo_version</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  read_intermediates <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -74,7 +75,7 @@
 
 
 <dt>input_data</dt>
-<dd><p>data frame from which a temporaryinput file is to be
+<dd><p>data frame from which a temporary input file is to be
 generated</p></dd>
 
 
@@ -97,12 +98,19 @@ ignored.</p></dd>
 <dd><p>version tag of Abimo release to be used, see
 <a href="https://github.com/KWB-R/abimo/releases" class="external-link">https://github.com/KWB-R/abimo/releases</a>.</p></dd>
 
+
+<dt>read_intermediates</dt>
+<dd><p>if <code>TRUE</code> the values of intermediate variables
+are read from the log file (if applicable). The default is <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>data frame, read from dbf file that was created by Abimo.exe</p>
+<p>data frame, read from dbf file that was created by Abimo.exe.
+If <code>read_intermediates</code> is <code>TRUE</code>, intermediate results are
+returned in the attribute "intermediates"</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
