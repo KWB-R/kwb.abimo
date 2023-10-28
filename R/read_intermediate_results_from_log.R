@@ -45,7 +45,7 @@ read_intermediate_results_from_log <- function(
   code_lines <- sapply(textblocks, "[", 1L)
 
   # Name the list elements according to the codes
-  names(textblocks) <- gsub(pattern, "", code_lines)
+  names(textblocks) <- gsub(pattern_code, "", code_lines)
 
   # Convert the text blocks with first (= code) line excluded to matrices
   matrices <- lapply(textblocks, function(x) {
