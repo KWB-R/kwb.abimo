@@ -71,18 +71,6 @@ check_abimo_binary <- function(tag = latest_abimo_version())
   file
 }
 
-# default_config -----------------------------------------------------------------
-
-#' Default ABIMO config.xml path
-#'
-#' @export
-#' @examples
-#' kwb.abimo::default_config()
-default_config <- function()
-{
-  extdata_file("config.xml")
-}
-
 # get_bagrov_curves_from_abimo -------------------------------------------------
 
 #' Get Bagrov curves from Abimo software
@@ -108,6 +96,11 @@ get_bagrov_curves_from_abimo <- function()
     y = "Ea_over_Ep"
   ))
 }
+
+# github_pat -------------------------------------------------------------------
+# Provide non-exported function github_pat() from package remotes
+#' @importFrom utils getFromNamespace
+github_pat <- utils::getFromNamespace("github_pat", "remotes")
 
 # latest_abimo_version ---------------------------------------------------------
 latest_abimo_version <- function()

@@ -1,5 +1,11 @@
 # read_config ------------------------------------------------------------------
-read_config <- function(file = default_config_file())
+
+#' Read Abimo Configuration from XML File
+#'
+#' @param file path to XML file
+#' @importFrom xml2 read_xml
+#' @export
+read_config <- function(file = default_config())
 {
   dive_into(x = xml2::read_xml(file), file)
 }
