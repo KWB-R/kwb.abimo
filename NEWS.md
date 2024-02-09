@@ -2,7 +2,12 @@
 
 # kwb.abimo 0.4.0 (2024-02-09)
 
-* export abimo_config()
+* export read_config()
+* deprecate private function default_config_file(), use default_config() instead
+* add private function github_pat()
+* document and export install_abimo()
+* add argument "token" to private functions download_assets(), get_asset_info()
+* add arguments "tag", "read_intermediates" to run_abimo()
 
 # kwb.abimo 0.3.0 (2023-10-26)
 
