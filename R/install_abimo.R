@@ -1,7 +1,13 @@
 # install_abimo ----------------------------------------------------------------
 
+#' Install ABIMO
+#'
+#' @param tag tag of ABIMO version to be installed, e.g. "v3.2.2"
+#' @param arch target system architecture, one of "windows", "linux", "macos"
+#' @param \dots further arguments passed to \code{kwb.abimo:::download_assets}
 #' @importFrom archive archive_extract
-#' @importFrom kwb.utils catAndRun createDirectory
+#' @importFrom kwb.utils catAndRun createDirectory stringList
+#' @export
 install_abimo <- function(
     tag = latest_abimo_version(),
     arch = get_architecture_suffix(),
@@ -16,7 +22,6 @@ install_abimo <- function(
       "'architectures': ",
       kwb.utils::stringList(expected_architectures),
       call. = FALSE
-
     )
   }
 
@@ -48,40 +53,35 @@ install_abimo <- function(
 
 # download_assets --------------------------------------------------------------
 
-#' @importFrom utils download.file getFromNamespace
+#' @importFrom utils download.file
 download_assets <- function(
     repo,
     tag,
     destdir = tempdir(),
     pattern = NULL,
     accept = "application/octet-stream",
-    timeout = getOption("timeout")
+    timeout = getOption("timeout"),
+    token = github_pat()
 )
 {
   old_options <- options(timeout = timeout)
   on.exit(options(old_options))
 
-  asset_info <- get_asset_info(repo, tag)
+  asset_info <- get_asset_info(repo, tag, token = token)
 
   if (!is.null(pattern)) {
     asset_info <- asset_info[grepl(pattern, asset_info$name), ]
   }
-
-  # Provide non-exported function github_pat() from package remotes
-  token <- utils::getFromNamespace("github_pat", "remotes")()
-
-  # Compose HTTP header (with or without token)
-  headers <- c(
-    if (!is.null(token)) c(Authorization = paste("token", token)),
-    Accept = accept
-  )
 
   for (i in seq_len(nrow(asset_info))) {
 
     utils::download.file(
       url = asset_info$url[i],
       destfile = file.path(destdir, asset_info$name[i]),
-      headers = headers,
+      headers = c(
+        Authorization = paste("token", token),
+        Accept = accept
+      ),
       mode = "wb"
     )
   }
@@ -93,11 +93,11 @@ download_assets <- function(
 
 #' @importFrom gh gh
 #' @importFrom kwb.utils asNoFactorDataFrame selectElements
-get_asset_info <- function(repo, tag)
+get_asset_info <- function(repo, tag, token = github_pat())
 {
   url_releases <- sprintf("https://api.github.com/repos/%s/releases", repo)
 
-  release_info <- gh::gh(url_releases)
+  release_info <- gh::gh(url_releases, .token = token)
 
   tag_names <- sapply(release_info, kwb.utils::selectElements, "tag_name")
 
@@ -109,7 +109,7 @@ get_asset_info <- function(repo, tag)
   )
 
   if (!length(assets)) {
-    stop("There are no assets for release ", tag)
+    stop("There are no assets for release ", tag, call. = FALSE)
   }
 
   do.call(rbind, lapply(assets, function(asset) {

@@ -109,6 +109,11 @@ get_bagrov_curves_from_abimo <- function()
   ))
 }
 
+# github_pat -------------------------------------------------------------------
+# Provide non-exported function github_pat() from package remotes
+#' @importFrom utils getFromNamespace
+github_pat <- utils::getFromNamespace("github_pat", "remotes")
+
 # latest_abimo_version ---------------------------------------------------------
 latest_abimo_version <- function()
 {
