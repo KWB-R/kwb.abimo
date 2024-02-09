@@ -9,7 +9,7 @@
 #' @export
 create_configurator <- function(xml_file = NULL)
 {
-  xml_file <- kwb.utils::defaultIfNULL(xml_file, default_config_file())
+  xml_file <- kwb.utils::defaultIfNULL(xml_file, default_config())
 
   x <- xml2::read_xml(xml_file)
 
@@ -74,7 +74,22 @@ create_configurator <- function(xml_file = NULL)
 # default_config_file ----------------------------------------------------------
 default_config_file <- function()
 {
-  system.file("extdata/config.xml", package = "kwb.abimo")
+  kwb.utils::warningDeprecated(
+    "default_config_file",
+    "default_config"
+  )
+}
+
+# default_config ---------------------------------------------------------------
+
+#' Default ABIMO config.xml path
+#'
+#' @export
+#' @examples
+#' kwb.abimo::default_config()
+default_config <- function()
+{
+  extdata_file("config.xml")
 }
 
 # get_xpaths -------------------------------------------------------------------

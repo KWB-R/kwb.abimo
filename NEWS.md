@@ -1,5 +1,9 @@
 # Latest developments
 
+# kwb.abimo 0.4.0 (2024-02-09)
+
+* export abimo_config()
+
 # kwb.abimo 0.3.0 (2023-10-26)
 
 * Fix GitHub Actions workflow files (master -> v2)

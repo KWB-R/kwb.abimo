@@ -71,18 +71,6 @@ check_abimo_binary <- function(tag = latest_abimo_version())
   file
 }
 
-# default_config -----------------------------------------------------------------
-
-#' Default ABIMO config.xml path
-#'
-#' @export
-#' @examples
-#' kwb.abimo::default_config()
-default_config <- function()
-{
-  extdata_file("config.xml")
-}
-
 # get_bagrov_curves_from_abimo -------------------------------------------------
 
 #' Get Bagrov curves from Abimo software
