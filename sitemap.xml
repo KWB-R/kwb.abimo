@@ -82,7 +82,10 @@
     <loc>/reference/install_abimo.html</loc>
   </url>
   <url>
-    <loc>/reference/read_abimo_intermediate_results_from_log.html</loc>
+    <loc>/reference/read_config.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_intermediate_results_from_log.html</loc>
   </url>
   <url>
     <loc>/reference/replace_value.html</loc>
