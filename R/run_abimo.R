@@ -3,7 +3,7 @@
 #' Run Abimo with Input Data or Input File
 #'
 #' @param input_file path to input dbf file
-#' @param input_data data frame from which a temporaryinput file is to be
+#' @param input_data data frame from which a temporary input file is to be
 #'   generated
 #' @param output_file path to output file. By default the output file has the
 #'   same name as the input file with "_result" appended
@@ -13,7 +13,11 @@
 #'   ignored.
 #' @param tag version tag of Abimo release to be used, see
 #'   \url{https://github.com/KWB-R/abimo/releases}.
-#' @return data frame, read from dbf file that was created by Abimo.exe
+#' @param read_intermediates if \code{TRUE} the values of intermediate variables
+#'   are read from the log file (if applicable). The default is \code{FALSE}.
+#' @return data frame, read from dbf file that was created by Abimo.exe.
+#'   If \code{read_intermediates} is \code{TRUE}, intermediate results are
+#'   returned in the attribute "intermediates"
 #' @export
 run_abimo <- function(
   input_file = NULL,
@@ -21,7 +25,8 @@ run_abimo <- function(
   output_file = NULL,
   config_file = NULL,
   config = NULL,
-  tag = latest_abimo_version()
+  tag = latest_abimo_version(),
+  read_intermediates = FALSE
 )
 {
   if (is.null(input_file) && is.null(input_data)) {
@@ -65,7 +70,20 @@ run_abimo <- function(
   # TODO: Let Abimo.exe return non-failure exit codes!
   suppressWarnings(run_abimo_command_line(args, tag = tag))
 
-  foreign::read.dbf(output_file)
+  result <- foreign::read.dbf(output_file)
+
+  # Read intermediate results from the log file
+  intermediates <- if (read_intermediates) {
+    catAndRun(
+      "Reading intermediate results from ABIMO log file",
+      read_intermediate_results_from_log(
+        file = kwb.utils::replaceFileExtension(output_file, ".log")
+      )
+    )
+  } # else NULL
+
+  # Return the intermediate results as an attribute
+  structure(result, intermediates = intermediates)
 }
 
 # default_output_file ----------------------------------------------------------

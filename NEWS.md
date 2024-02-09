@@ -1,6 +1,17 @@
 # Latest developments
 
-*
+# kwb.abimo 0.3.0 (2023-10-26)
+
+* Fix GitHub Actions workflow files (master -> v2)
+* Remove dependency on package "stringr"
+* New (exported) functions
+    - `calculate_bagrov_curve()`
+    - `get_bagrov_curves_from_abimo()`
+    - `install_abimo()`
+* The `CODE` column is now expected to be of type character, not integer
+* `dive_into()` now returns objects that have a `get()` method
+* Improve organisation of functions in files
+* many more changes (TODO: complete this list)
 
 # kwb.abimo 0.2.0 (2022-06-23)
 
