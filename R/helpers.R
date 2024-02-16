@@ -142,6 +142,8 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
   output
 }
 
+# write.dbf.abimo --------------------------------------------------------------
+
 #' writes data.frame into ABIMO-dbf
 #'
 #' Saves an existing data.frame into dBase-format
@@ -156,20 +158,12 @@ run_abimo_command_line <- function(args, tag = latest_abimo_version())
 #' @export
 write.dbf.abimo <- function (df_name, new_dbf)
 {
-  na_counts <- sapply(df_name, kwb.utils::nNA)
-  is_double <- sapply(df_name, is.double)
+  all_na <- sapply(df_name, kwb.utils::nNA) == nrow(df_name)
 
-  may_cause_warnings <- is_double & (na_counts > 0L)
-
-  if (any(may_cause_warnings)) {
+  if (any(all_na)) {
     message(
-      "foreign::write.dbf() may cause warnings due to NA values in the ",
-      "following numeric columns: ",
-      paste(collapse = ", ", sprintf(
-        "\"%s\" (%d-times)",
-        names(which(may_cause_warnings)),
-        na_counts[may_cause_warnings]
-      ))
+      "foreign::write.dbf() will cause warnings due to the following empty ",
+      "columns: ", kwb.utils::stringList(names(which(all_na)), qchar = '"')
     )
   }
 
