@@ -76,6 +76,12 @@
     <loc>/dev/reference/index.html</loc>
   </url>
   <url>
+    <loc>/dev/reference/install_abimo.html</loc>
+  </url>
+  <url>
+    <loc>/dev/reference/read_config.html</loc>
+  </url>
+  <url>
     <loc>/dev/reference/read_intermediate_results_from_log.html</loc>
   </url>
   <url>
