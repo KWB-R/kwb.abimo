@@ -21,7 +21,7 @@ Type_ID;Type_ENG;Type_GER
 38;Mixed area without residential character, dense development;Mischgebiet oehne Woehngebietscharakter, dichte Bebauung
 30;Commercial and industrial area, large-scale retail, sparse development;Gewerbe- und Industriegebiet, groessflaechiger Einzelhandel, geringe Bebauung
 33;Mixed area without residential character, sparse development;Mischgebiet oehne Woehngebietscharakter, geringe Bebauung
-32;;Supply and disposal;Ver- und Entsoergung
+32;Supply and disposal;Ver- und Entsoergung
 92;Railway stations and railway facilities (excluding tracks);Bahnhoef und Bahnanlagen oehne Gleiskoerper
 99;Railway tracks;Gleiskoerper
 91;Parking lot;Parkplatz
