@@ -1,24 +1,24 @@
-Typ_Nutzung;Typ_nutzung_klar
-10;Wohnnutzung
-70;Wochenendhaus- und kleingartenähnliche Nutzung
-21;Mischnutzung
-30;Kerngebietsnutzung
-40;Gewerbe- und Industrienutzung, großflächiger Einzelhandel
-50;Gemeinbedarfs- und Sondernutzung
-60;Ver- und Entsorgung
-80;Verkehrsfläche (ohne Straßen)
-90;Baustelle
-100;Wald
-121;Grünland
-122;Ackerland
-130;Park / Grünfläche
-140;Stadtplatz / Promenade
-150;Friedhof
-160;Kleingartenanlage
-171;Brachfläche
-172;Brachfläche
-173;Brachfläche
-190;Sportnutzung
-200;Baumschule / Gartenbau
-110;Gewässer
-300;Straßen
+Typ_Nutzung;Typ_nutzung_klar;Deutsch
+10;Residential;Wohnnutzung
+70;Weekendhouses and Gartening;Wochenendhaus- und kleingartenaehnliche Nutzung
+21;Mixed use;Mischnutzung
+30;Core Area;Kerngebietsnutzung
+40;Commercial, Industrial, Retail;Gewerbe- und Industrienutzung, grossflaechiger Einzelhandel
+50;Community service;Gemeinbedarfs- und Sondernutzung
+60;Suppy and disposal;Ver- und Entsorgung
+80;Traffic area (excluding roads);Verkehrsflaeche (ohne Strassen)
+90;Construction site;Baustelle
+100;Forest;Wald
+121;Green space;Gruenland
+122;Agricultural;Ackerland
+130;Parcs and green spaces;Park / Gruenflaeche
+140;Square Promenade;Stadtplatz / Promenade
+150;Cemetery;Friedhof
+160;Gardening Area;Kleingartenanlage
+171;Fallow land, unused;Brachflaeche
+172;Fallow land, unused;Brachflaeche
+173;Fallow land, unused;Brachflaeche
+190;Sport;Sportnutzung
+200;Tree nursery, horticultural;Baumschule / Gartenbau
+110;Water body;Gewaesser
+300;Road;Strassen
