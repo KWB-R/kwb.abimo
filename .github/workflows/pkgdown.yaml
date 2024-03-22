@@ -11,7 +11,7 @@ jobs:
   pkgdown:
     runs-on: windows-latest
     env:
-      GITHUB_PAT: ${{ secrets.GH_PRIVATE_TOKEN }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
