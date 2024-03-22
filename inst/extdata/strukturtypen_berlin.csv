@@ -1,52 +1,52 @@
 Type_ID;Type_ENG;Type_GER
-1;High-density block development, enclosed rear courtyards (1870s - 1918), 5 - 6 stories;Dichte Bloeckbebauung, geschloessener Hinterhoef (1870er - 1918), 5 - 6-geschoessig
-2;Enclosed block development, rear courtyards (1870s - 1918), 5 stories;Geschloessene Bloeckbebauung, Hinterhoef (1870er - 1918), 5-geschoessig
-3;Enclosed and semi-open block development, ornamental and garden courtyards (1870s - 1918), 4 sories;Geschloessene und halboeffene Bloeckbebauung, Schmuck- und Gartenhoef (1870er - 1918), 4-geschoessig
-6;Mixed development, semi-open and open shed courtyards, 2 - 4 stories;Mischbebauung, halboeffener und oeffener Schuppenhoef, 2 - 4-geschoessig
-10;Block edge development with large courtyards (1920s - 1940s), 2 - 5 stories;Bloeckrandbebauung mit Groesshoefen (1920er - 1940er), 2 - 5-geschoessig
-72;Parallel row development with architectural greenery (1920s - 1930s), 2 - 5 stories;Parallele Zeilenbebauung mit architektoenischem Zeilengruen (1920er - 1930er), 2 - 5-geschoessig
-8;Heterogeneous, inner-city mixed development, infill after 1945;Heteroegene, innerstaedtische Mischbebauung, Lueckenschluss nach 1945
-7;Core block development, infill after 1945;Entkernte Bloeckrandbebauung, Lueckenschluss nach 1945
-73;Multi-story apartment buildings of the 1990s and later;Geschoesswoehnungsbau der 1990er Jahre und juenger
-9;Large-scale housing estates and high-rise buildings (1960s - 1990s), 4 - 11 stories and above;Groesssiedlung und Punkthoechhaeuser (1960er - 1990er), 4 - 11-geschoessig und mehr
-11;Free row development with landscaped settlement greenery (1950s - 1970s), 2 - 6 stories;Freie Zeilenbebauung mit landschaftlichem Siedlungsgruen (1950er - 1970er), 2 - 6-geschoessig
+1;High-density block development, enclosed rear courtyards (1870s - 1918), 5 - 6 stories;Dichte Blockbebauung, geschlossener Hinterhof (1870er - 1918), 5 - 6-geschossig
+2;Enclosed block development, rear courtyards (1870s - 1918), 5 stories;Geschlossene Blockbebauung, Hinterhof (1870er - 1918), 5-geschossig
+3;Enclosed and semi-open block development, ornamental and garden courtyards (1870s - 1918), 4 sories;Geschlossene und halboffene Blockbebauung, Schmuck- und Gartenhof (1870er - 1918), 4-geschossig
+6;Mixed development, semi-open and open shed courtyards, 2 - 4 stories;Mischbebauung, halboffener und offener Schuppenhof, 2 - 4-geschossig
+10;Block edge development with large courtyards (1920s - 1940s), 2 - 5 stories;Blockrandbebauung mit Grosshofen (1920er - 1940er), 2 - 5-geschossig
+72;Parallel row development with architectural greenery (1920s - 1930s), 2 - 5 stories;Parallele Zeilenbebauung mit architektonischem Zeilengruen (1920er - 1930er), 2 - 5-geschossig
+8;Heterogeneous, inner-city mixed development, gap closure after 1945;Heterogene, innerstaedtische Mischbebauung, Lueckenschluss nach 1945
+7;Core block development, gap closure after 1945;Entkernte Blockrandbebauung, Lueckenschluss nach 1945
+73;Multi-story apartment buildings of the 1990s and later;Geschosswohnungsbau der 1990er Jahre und juenger
+9;Large-scale housing estates and high-rise buildings (1960s - 1990s), 4 - 11 stories and above;Grosssiedlung und Punkthochhaeuser (1960er - 1990er), 4 - 11-geschossig und mehr
+11;Free row development with landscaped settlement greenery (1950s - 1970s), 2 - 6 stories;Freie Zeilenbebauung mit landschaftlichem Siedlungsgruen (1950er - 1970er), 2 - 6-geschossig
 25;Densification in single-household areas, mixed development with gardens and semi-private greening (1870s to present);Verdichtung im Einzelhausgebiet, Mischbebauung mit Garten und halbprivater Umgruenung (1870er bis heute)
-21;Rural mixed development;Doerfliche Mischbebauung
+21;Rural mixed development;Dorfliche Mischbebauung
 24;Villas and town villas with park-like gardens (mostly 1870s - 1945);Villen und Stadtvillen mit parkartigen Gaerten (ueberwiegend 1870er - 1945)
-22;Terraced and duplex houses with gardens;Reihen- und Doeppelhaeuser mit Gaerten
+22;Terraced and duplex houses with gardens;Reihen- und Doppelhaeuser mit Gaerten
 23;Single-family houses with gardens;Freistehende Einfamilienhaeuser mit Gaerten
-59;Weekend house and allotment-like area;Woechenendhaus- und kleingartenaehnliches Gebiet
+59;Weekend house and allotment-like area;Wochenendhaus- und kleingartenaehnliches Gebiet
 29;Core area;Kerngebiet
-31;Commercial and industrial area, large-scale retail, dense development;Gewerbe- und Industriegebiet, groessflaechiger Einzelhandel, dichte Bebauung
-38;Mixed area without residential character, dense development;Mischgebiet oehne Woehngebietscharakter, dichte Bebauung
-30;Commercial and industrial area, large-scale retail, sparse development;Gewerbe- und Industriegebiet, groessflaechiger Einzelhandel, geringe Bebauung
-33;Mixed area without residential character, sparse development;Mischgebiet oehne Woehngebietscharakter, geringe Bebauung
-32;Supply and disposal;Ver- und Entsoergung
-92;Railway stations and railway facilities (excluding tracks);Bahnhoef und Bahnanlagen oehne Gleiskoerper
+31;Commercial and industrial area, large-scale retail, dense development;Gewerbe- und Industriegebiet, grossflaechiger Einzelhandel, dichte Bebauung
+38;Mixed area without residential character, dense development;Mischgebiet ohne Wohngebietscharakter, dichte Bebauung
+30;Commercial and industrial area, large-scale retail, sparse development;Gewerbe- und Industriegebiet, grossflaechiger Einzelhandel, geringe Bebauung
+33;Mixed area without residential character, sparse development;Mischgebiet ohne Wohngebietscharakter, geringe Bebauung
+32;Supply and disposal;Ver- und Entsorgung
+92;Railway stations and railway facilities (excluding tracks);Bahnhof und Bahnanlagen ohne Gleiskoerper
 99;Railway tracks;Gleiskoerper
 91;Parking lot;Parkplatz
-94;Other traffic area;Soenstige Verkehrsflaeche
+94;Other traffic area;Sonstige Verkehrsflaeche
 93;Airport;Flughafen
 43;Administration;Verwaltung
 45;Culture;Kultur
-41;Safety;Sicherheit und oerdnung
-12;School historical building (built before 1945);Altbau-Schule (Baujahr voer 1945)
+41;Safety;Sicherheit und ordnung
+12;School historical building (built before 1945);Altbau-Schule (Baujahr vor 1945)
 13;School recent building (built after 1945);Neubau-Schule (Baujahr nach 1945)
-44;University and research;Hoechschule und Foerschung
+44;University and research;Hochschule und Forschung
 47;Daycare center for children;Kindertagesstaette
-51;Other youth facility;Soenstige Jugendeinrichtung
+51;Other youth facility;Sonstige Jugendeinrichtung
 58;Camping area;Campingplatz
-60;Heterogeneous community and special use;Soenstiges und heteroegenes Gemeinbedarfs- und Soendergebiet
+60;Heterogeneous community and special use;Sonstiges und heterogenes Gemeinbedarfs- und Sondergebiet
 49;Religious Building;Kirche
 46;Hospital;Krankenhaus
 98;Construction site;Baustelle
-54;Town Square, Promenade;Stadtplatz / Proemenade
-17;Sport indoor;Spoertanlage, gedeckt
-16;Sport outdoor;Spoertanlage, ungedeckt
+54;Town Square, Promenade;Stadtplatz / Promenade
+17;Sport indoor;Sportanlage, gedeckt
+16;Sport outdoor;Sportanlage, ungedeckt
 36;Tree nursery, horticultural;Baumschule / Gartenbau
 37;Allotment garden area;Kleingartenanlage
 53;parc, green area;Park / Gruenflaeche
-27;Cemeteries;Friedhoef
+27;Cemeteries;Friedhof
 57;Vacant lot;Brachflaeche
 56;Agricultural;Landwirtschaft
 55;Forest;Wald
